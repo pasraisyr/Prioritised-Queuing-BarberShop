@@ -1,4 +1,4 @@
-package com.CCSD.BarberShop;
+package com.ccsd.BarberShop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
