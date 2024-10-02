@@ -1,8 +1,9 @@
 // App.js
 import { Routes, Route } from "react-router-dom";
 import AdminPages from "./AdminPages";
-import SignInSide from "./FrontEnd/scense/SignInSide";
+import SignInSide from "./FrontEnd/login/SignInSide";
 import StaffPages from "./StaffPages";
+import UserCatalogue from "./FrontEnd/others/UserCatalogue";
 
 function App() {
   return (
@@ -12,6 +13,12 @@ function App() {
         path="/"
         element={
             <SignInSide />
+        }
+      />
+      <Route
+        path="/catalogue"
+        element={
+            <UserCatalogue />
         }
       />
     </Routes>

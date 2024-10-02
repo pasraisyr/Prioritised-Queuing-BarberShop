@@ -7,7 +7,7 @@ const API_BASE_URL = 'http://localhost:8082/api';
 const AuthService = {
     async login(email, password) {
       try {
-        const response = await axios.post(`${API_BASE_URL}/app_auth/`, {
+        const response = await axios.post(`${API_BASE_URL}/books/`, {
             email,
             password,
             
