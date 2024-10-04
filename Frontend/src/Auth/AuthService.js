@@ -6,8 +6,9 @@ const API_BASE_URL = 'http://localhost:8082/api';
 
 const AuthService = {
     async login(username, password) {
+
       try {
-        const response = await axios.post(`${API_BASE_URL}/users`, {
+        const response = await axios.post(`${API_BASE_URL}/users/login`, {
           username,
           password,
             
@@ -15,10 +16,10 @@ const AuthService = {
         {
               headers: {
               'Content-Type': 'application/json',
-              "Access-Control-Allow-Origin": "*",
               "Accept": "*/*"
             
             },
+            withCredentials: true
           }
         );
   
