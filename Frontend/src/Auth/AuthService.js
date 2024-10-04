@@ -5,25 +5,26 @@ const API_BASE_URL = 'http://localhost:8082/api';
 
 
 const AuthService = {
-    async login(email, password) {
+    async login(username, password) {
       try {
-        const response = await axios.post(`${API_BASE_URL}/books/`, {
-            email,
-            password,
+        const response = await axios.post(`${API_BASE_URL}/users`, {
+          username,
+          password,
             
         },
         {
               headers: {
               'Content-Type': 'application/json',
+              "Access-Control-Allow-Origin": "*"
+            
             },
           }
         );
   
         if (response.status === 200) {
-          // Store the JWT token in localStorage
-          localStorage.setItem('jwtToken', response.data.token);
-          localStorage.setItem('userName', response.data.username);
-          localStorage.setItem('userType', response.data.user_type);
+
+          localStorage.setItem('username', response.data.username);
+          localStorage.setItem('role', response.data.role);
           return true;
         }
       } catch (error) {
