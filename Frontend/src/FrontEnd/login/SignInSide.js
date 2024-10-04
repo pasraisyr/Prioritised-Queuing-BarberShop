@@ -34,7 +34,7 @@ const defaultTheme = createTheme();
 
 export default function SignInSide() {
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedInAdmin, setIsLoggedInAdmin] = useState(false); // Add this line
 
@@ -44,14 +44,16 @@ export default function SignInSide() {
     event.preventDefault(); // Prevent the default form submission behavior
   
     try {
-      const success = await AuthService.login(email, password);
-      const userType = await localStorage.getItem('userType');
+      const success = await AuthService.login(username, password);
+      const role = await localStorage.getItem('role');
       
-      if (success && userType === "1" ) {
+      if (success && role === "0" ) {
         setIsLoggedInAdmin(true);
         navigate("/dashboard-admin");
-      } else if (success && userType === "2") {
+      } else if (success && role === "1") {
         navigate("/dashboard-staff");
+      } else if (success && role === "2") {
+        navigate("/dashboard-customer");
       
       } else {
         // Handle login failure and display an error message to the user
@@ -99,14 +101,14 @@ export default function SignInSide() {
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="User Name"
+                name="username"
+                autoComplete="username"
                 autoFocus
               />
               <TextField
