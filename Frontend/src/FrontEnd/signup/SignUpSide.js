@@ -3,17 +3,16 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import { useNavigate, Link as RouterLink } from 'react-router-dom'; // Import RouterLink
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AuthService from '../../Auth/AuthService';
+import Paper from '@mui/material/Paper';
+import { useNavigate } from 'react-router-dom';
+import MenuItem from '@mui/material/MenuItem'; // For the role dropdown
+import AuthService from '../../Auth/AuthService'; // Adjust the path to your AuthService file
 
 function Copyright(props) {
   return (
@@ -30,33 +29,29 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignInSide() {
+export default function SignUpSide() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedInAdmin, setIsLoggedInAdmin] = useState(false);
-
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [role, setRole] = useState(2); // Default to customer role (2)
+  const [name, setName] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     try {
-      const success = await AuthService.login(username, password);
-      const role = await localStorage.getItem('role');
-
-      if (success && role === "0") {
-        setIsLoggedInAdmin(true);
-        navigate("/dashboard-admin");
-      } else if (success && role === "1") {
-        navigate("/dashboard-staff");
-      } else if (success && role === "2") {
-        navigate("/dashboard-customer");
+      const success = await AuthService.register(username, password, phoneNumber, role, name);
+      
+      if (success) {
+        alert("Registration successful! You can now sign in.");
+        navigate("/signin");
       } else {
-        alert("Login failed. Please check your credentials.");
+        alert("Registration failed. Please try again.");
       }
     } catch (error) {
-      console.error("Login error:", error);
-      alert("An error occurred while logging in.");
+      console.error("Registration error:", error);
+      alert("An error occurred during registration.");
     }
   };
 
@@ -92,10 +87,21 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Sign Up
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Full Name"
+                name="name"
+              />
+              <TextField
+                value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 margin="normal"
                 required
@@ -104,9 +110,9 @@ export default function SignInSide() {
                 label="User Name"
                 name="username"
                 autoComplete="username"
-                autoFocus
               />
               <TextField
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 margin="normal"
                 required
@@ -117,28 +123,45 @@ export default function SignInSide() {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+              <TextField
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                margin="normal"
+                required
+                fullWidth
+                id="phoneNumber"
+                label="Phone Number"
+                name="phoneNumber"
+                autoComplete="tel"
               />
+              <TextField
+                select
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                margin="normal"
+                required
+                fullWidth
+                id="role"
+                label="Role"
+                name="role"
+                helperText="Please select your role"
+              >
+                <MenuItem value={0}>Admin</MenuItem>
+                <MenuItem value={1}>Staff</MenuItem>
+                <MenuItem value={2}>Customer</MenuItem>
+              </TextField>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Sign Up
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
-                  {/* Use RouterLink here for Sign Up navigation */}
-                  <Link component={RouterLink} to="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                  <Link to="/signin" component={Link} variant="body2">
+                    {"Already have an account? Sign In"}
                   </Link>
                 </Grid>
               </Grid>

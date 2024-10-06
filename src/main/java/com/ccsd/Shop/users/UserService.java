@@ -26,6 +26,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User registerUser(User user) {
+        // Check if the username already exists
+        if (userRepository.findByUsername(user.getUsername()) != null) {
+            throw new RuntimeException("Username already taken");
+        }
+
+        return userRepository.save(user);
+    }
+
     // Updating a user
     public User updateUser(String id, User userDetails) {
         Optional<User> userOpt = userRepository.findById(id);
@@ -52,4 +61,6 @@ public class UserService {
         }
         return null;
     }
+
+    
 }
