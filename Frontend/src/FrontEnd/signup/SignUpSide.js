@@ -86,6 +86,7 @@ export default function SignUpSide() {
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
+            <h1 className="text-3xl font-bold underline" > Hello </h1>
             <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
