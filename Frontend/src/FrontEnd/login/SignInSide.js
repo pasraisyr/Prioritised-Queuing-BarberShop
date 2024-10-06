@@ -44,12 +44,12 @@ export default function SignInSide() {
       const success = await AuthService.login(username, password);
       const role = await localStorage.getItem('role');
 
-      if (success && role === "0") {
+      if (success && role === "Admin") {
         setIsLoggedInAdmin(true);
         navigate("/dashboard-admin");
-      } else if (success && role === "1") {
+      } else if (success && role === "Staff") {
         navigate("/dashboard-staff");
-      } else if (success && role === "2") {
+      } else if (success && role === "Customer") {
         navigate("/dashboard-customer");
       } else {
         alert("Login failed. Please check your credentials.");

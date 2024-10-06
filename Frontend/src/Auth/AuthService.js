@@ -35,69 +35,25 @@ const AuthService = {
       }
     },
 
-    register: async (username, password, phoneNumber, role, name) => {
-      // Registration logic for new user
-      const formData = new FormData();
-      formData.append('username', username);
-      formData.append('password', password);
-      formData.append('phoneNumber', phoneNumber);
-      formData.append('role', role);
-      formData.append('name', name);
-    
-      // Make a POST request to your backend API with the registration details
-      const response = await fetch('/api/users/register', {
-        method: 'POST',
-        body: formData,
-      });
-    
-      const data = await response.json();
-      
-      if (data.success) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+    async register(username, password, phoneNumber, role, name) {
+    //  const username = await localStorage.getItem('username');
   
-    async addTeamSave(email, password, firstName, lastName, phone, address, role, userName) {
-      const token = await localStorage.getItem('jwtToken');
-      const username = await localStorage.getItem('userName');
-      console.log(token);
-      if (!token) {
-        throw new Error('No token found');
-      }
-      console.log(email);
-      console.log(password);
-      console.log(firstName);
-      console.log(userName);
-      console.log(phone);
-      console.log(address);
-      console.log(role);
-      console.log(lastName);
       try {
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('password', password);
+        formData.append('name', name);
+        formData.append('phoneNumber', phoneNumber);
+        formData.append('role', role);
+  
         const response = await axios.post(
-          `${API_BASE_URL}/add_team/`,
-          {
-            params:
-            {
-              username: userName,
-              email: email,
-              password: password,
-              first_name: firstName,
-              last_name: lastName,
-              phone: phone,
-              address: address,
-              role: role,
-            }
-          },
+          `${API_BASE_URL}/users`,
+          formData,
           {
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-              'Authorization': `Bearer ${token}`,
-              'Accept': '*/*',
+              "Accept": "*/*"
             },
-            withCredentials: true,
           }
         );
   
@@ -115,6 +71,7 @@ const AuthService = {
         throw error;
       }
     },
+  
 
 
   
