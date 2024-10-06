@@ -14,6 +14,7 @@ import AddSuburb from "./StaffViews/scense/suburbs/AddSuburb";
 
 const ManagerViewsLayout = ({ children }) => {
     const [theme, colorMode] = useMode();
+    
   
     return (
       <ColorModeContext.Provider value={colorMode}>

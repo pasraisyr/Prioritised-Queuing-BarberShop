@@ -10,9 +10,10 @@ import Typography from '@mui/material/Typography';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem'; // For the role dropdown
 import AuthService from '../../Auth/AuthService'; // Adjust the path to your AuthService file
+import { useNavigate, Link as RouterLink } from 'react-router-dom'; // Import RouterLink
 
 function Copyright(props) {
   return (
@@ -147,7 +148,7 @@ export default function SignUpSide() {
                 name="role"
                 helperText="Please select your role"
               >
-                
+      
                 <MenuItem value="Staff">Staff</MenuItem>
                 <MenuItem value="Customer">Customer</MenuItem>
               </TextField>
@@ -161,7 +162,7 @@ export default function SignUpSide() {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link to="/signin" component={Link} variant="body2">
+                <Link component={RouterLink} to="/signin" variant="body2">
                     {"Already have an account? Sign In"}
                   </Link>
                 </Grid>

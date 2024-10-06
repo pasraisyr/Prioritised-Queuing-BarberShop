@@ -3,7 +3,8 @@
 const BookingForm = () => {
   return (
     <div>
-      <p className=" font-bold" ></p>
+      <p className=" font-bold" >Hello World</p>
+      
     </div>
   )
 }
