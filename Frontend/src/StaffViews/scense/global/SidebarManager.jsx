@@ -15,6 +15,7 @@ import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import HolidayVillageIcon from '@mui/icons-material/HolidayVillage';
+import ContentCutIcon from '@mui/icons-material/ContentCut';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -164,7 +165,7 @@ const SidebarManager = () => {
             <Item
               title="Drivers Input"
               to="/drivers-input"
-              icon={<LocalShippingIcon />}
+              icon={<ContentCutIcon />}
               selected={selected}
               setSelected={setSelected}
             />

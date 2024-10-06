@@ -5,6 +5,7 @@ import SignInSide from "./FrontEnd/login/SignInSide";
 import SignUpSide from "./FrontEnd/signup/SignUpSide"
 import StaffPages from "./StaffPages";
 import UserCatalogue from "./FrontEnd/others/UserCatalogue";
+import BookingForm from "./FrontEnd/BookingForm";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <UserCatalogue />
         }
       />
+      <Route path="booking-form" element={<BookingForm />} />
     </Routes>
       <AdminPages />
       <StaffPages />
