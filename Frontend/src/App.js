@@ -11,7 +11,7 @@ function App() {
     <>
     <Routes>
     <Route
-        path="/"
+        path="/signin"
         element={
             <SignInSide />
         }

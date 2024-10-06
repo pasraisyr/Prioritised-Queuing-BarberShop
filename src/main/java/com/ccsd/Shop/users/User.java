@@ -9,13 +9,13 @@ public class User{
     private String username;
     private String password;
     private String phoneNumber;
-    private int role;
+    private String role;
     private String name;
 
 
     public User(){}
 
-    public User(String id, String username, String password, String phoneNumber, int role, String name){
+    public User(String id, String username, String password, String phoneNumber, String role, String name){
         
         this.id = id ;
         this.username = username ;
@@ -60,11 +60,11 @@ public class User{
         return phoneNumber;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 

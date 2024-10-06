@@ -33,7 +33,7 @@ export default function SignUpSide() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [role, setRole] = useState(2); // Default to customer role (2)
+  const [role, setRole] = useState(""); // Default to customer role (2)
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
@@ -146,9 +146,9 @@ export default function SignUpSide() {
                 name="role"
                 helperText="Please select your role"
               >
-                <MenuItem value={0}>Admin</MenuItem>
-                <MenuItem value={1}>Staff</MenuItem>
-                <MenuItem value={2}>Customer</MenuItem>
+                <MenuItem value="Admin">Admin</MenuItem>
+                <MenuItem value="Staff">Staff</MenuItem>
+                <MenuItem value="Customer">Customer</MenuItem>
               </TextField>
               <Button
                 type="submit"
