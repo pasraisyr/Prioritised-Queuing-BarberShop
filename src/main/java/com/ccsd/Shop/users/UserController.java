@@ -58,4 +58,14 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
+        try {
+            User registeredUser = userService.registerUser(user);
+            return ResponseEntity.ok(registeredUser);  // Return the registered user
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());  // Return error if username is taken
+        }
+    }
 }

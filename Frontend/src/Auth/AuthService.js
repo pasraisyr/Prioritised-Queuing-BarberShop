@@ -34,6 +34,30 @@ const AuthService = {
         return false;
       }
     },
+
+    register: async (username, password, phoneNumber, role, name) => {
+      // Registration logic for new user
+      const formData = new FormData();
+      formData.append('username', username);
+      formData.append('password', password);
+      formData.append('phoneNumber', phoneNumber);
+      formData.append('role', role);
+      formData.append('name', name);
+    
+      // Make a POST request to your backend API with the registration details
+      const response = await fetch('/api/users/register', {
+        method: 'POST',
+        body: formData,
+      });
+    
+      const data = await response.json();
+      
+      if (data.success) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   
     async addTeamSave(email, password, firstName, lastName, phone, address, role, userName) {
       const token = await localStorage.getItem('jwtToken');
