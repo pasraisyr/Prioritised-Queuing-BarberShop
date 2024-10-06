@@ -147,7 +147,7 @@ export default function SignUpSide() {
                 name="role"
                 helperText="Please select your role"
               >
-                <MenuItem value="Admin">Admin</MenuItem>
+                
                 <MenuItem value="Staff">Staff</MenuItem>
                 <MenuItem value="Customer">Customer</MenuItem>
               </TextField>
