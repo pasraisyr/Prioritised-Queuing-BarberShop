@@ -8,13 +8,13 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
-import DocumentScannerOutlinedIcon from '@mui/icons-material/DocumentScannerOutlined';
-import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
+// import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
+// import DocumentScannerOutlinedIcon from '@mui/icons-material/DocumentScannerOutlined';
+// import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
 // import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import HolidayVillageIcon from '@mui/icons-material/HolidayVillage';
+// import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+// import HolidayVillageIcon from '@mui/icons-material/HolidayVillage';
 import ContentCutIcon from '@mui/icons-material/ContentCut';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
@@ -82,7 +82,7 @@ const SidebarManager = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  Staff
+                  Customers
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -109,10 +109,9 @@ const SidebarManager = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                 Managment
+                 Hello User!
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Manager
                 </Typography>
               </Box>
             </Box>
@@ -135,14 +134,14 @@ const SidebarManager = () => {
               Users
             </Typography>
             <Item
-              title="Manage Team"
+              title="Packages"
               to="/team-manager"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Clients"
+              title="Hair Cut"
               to="/clients"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
@@ -163,7 +162,7 @@ const SidebarManager = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Drivers Input"
+              title="Your Booking"
               to="/drivers-input"
               icon={<ContentCutIcon />}
               selected={selected}
@@ -174,7 +173,7 @@ const SidebarManager = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-            Trip Info
+            {/* Trip Info
             </Typography>
             <Item
               title="Fuel"
@@ -222,8 +221,9 @@ const SidebarManager = () => {
               icon={<DocumentScannerOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
 
+</Typography>
       
           </Box>
         </Menu>

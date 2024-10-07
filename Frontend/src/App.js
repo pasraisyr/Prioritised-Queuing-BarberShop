@@ -1,16 +1,21 @@
 // App.js
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminPages from "./AdminPages";
 import SignInSide from "./FrontEnd/login/SignInSide";
 import SignUpSide from "./FrontEnd/signup/SignUpSide"
 import StaffPages from "./StaffPages";
 import UserCatalogue from "./FrontEnd/others/UserCatalogue";
-import BookingForm from "./FrontEnd/BookingForm";
+import CustomerPages from "./CustomerPages";
+import MainPage from "./FrontEnd/MainPage";
+// import BookingForm from "./CustomersViews/scense/dashboard";
+// import DashboardCustomer from "./CustomersViews/scense/dashboard";
+
 
 function App() {
   return (
     <>
     <Routes>
+    <Route path="/" element={<MainPage />} />
     <Route
         path="/signin"
         element={
@@ -24,8 +29,13 @@ function App() {
             <UserCatalogue />
         }
       />
-      <Route path="booking-form" element={<BookingForm />} />
+      {/* <Routes>
+        <Route path="/" element={<DashboardCustomer />} />
+        <Route path="/booking-form" element={<BookingForm />} />
+      </Routes> */}
+     
     </Routes>
+      <CustomerPages/>
       <AdminPages />
       <StaffPages />
       </>
