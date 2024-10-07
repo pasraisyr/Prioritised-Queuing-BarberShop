@@ -7,8 +7,8 @@ import StaffPages from "./StaffPages";
 import UserCatalogue from "./FrontEnd/others/UserCatalogue";
 import CustomerPages from "./CustomerPages";
 import MainPage from "./FrontEnd/MainPage";
-// import BookingForm from "./CustomersViews/scense/dashboard";
-// import DashboardCustomer from "./CustomersViews/scense/dashboard";
+import NewBooking from "./FrontEnd/booking/NewBooking";
+//import DashboardCustomer from "./CustomersViews/scense/dashboard";
 
 
 function App() {
@@ -29,6 +29,14 @@ function App() {
             <UserCatalogue />
         }
       />
+      <Route path="/new-booking" element={<NewBooking />} />
+      <Route
+        path="/catalogue"
+        element={
+            <UserCatalogue />
+        }
+      />
+
       {/* <Routes>
         <Route path="/" element={<DashboardCustomer />} />
         <Route path="/booking-form" element={<BookingForm />} />
