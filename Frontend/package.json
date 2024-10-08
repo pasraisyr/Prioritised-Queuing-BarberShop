@@ -20,6 +20,7 @@
     "@types/uuid": "^9.0.8",
     "async": "^3.2.5",
     "axios": "1.7.7",
+    "dayjs": "^1.11.13",
     "fabric": "^5.3.0",
     "html-react-parser": "^5.1.10",
     "java-admin": "file:",
