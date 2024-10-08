@@ -52,6 +52,9 @@ public class User{
         return password;
     }
 
+    //boolean isEqual = (str1 == str2); // true
+    //boolean isEqual = str1.equals(str2); // true
+
     public void setPhonenumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
