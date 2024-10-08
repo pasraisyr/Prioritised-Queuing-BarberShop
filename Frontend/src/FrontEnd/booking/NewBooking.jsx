@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import {
     Container,
     TextField,
@@ -13,7 +12,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
+import AuthService from '../../Auth/AuthService';
 
 
 const defaultTheme = createTheme();
@@ -44,25 +45,26 @@ export default function NewBooking(){
     const [selectedSlot, setSelectedSlot] = useState('');
     const [selectedPackage, setSelectedPackage] = useState('');
     const [selectedStyle, setSelectedStyle] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const bookingDetails = {
-            date: selectedDate.format('YYYY-MM-DD'),
-            slot: selectedSlot,
-            package: selectedPackage,
-            style: selectedStyle,
-            };
-        try {
-            const response = await axios.post('http://localhost:5000/bookings', bookingDetails);
-            alert('Booking confirmed! Check console for details');
-            console.log('Booking Details:', response.data);
-        } catch (error){
-            console.error('Error submitting booking:', error);
-            alert('Failed to confirm booking. Please try again');
+          event.preventDefault(); // Prevent the default form submission behavior
+        
+          try {
+            const success = await AuthService.book(selectedDate, selectedSlot, selectedPackage, selectedStyle);
+            
+            if (success) {
+              navigate("/");
+            } else {
+              // Handle login failure and display an error message to the user
+              alert("Error Saving data");
+            }
+          } catch (error) {
+            // Handle network or other errors
+            console.error("Saving Error:", error);
+            alert("An error occurred while saving.");
+          }
         }
-};
 return (
     <Container maxWidth="sm">
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh">
