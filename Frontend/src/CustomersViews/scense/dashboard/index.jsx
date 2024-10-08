@@ -11,15 +11,16 @@ const DashboardCustomer = () => {
 
   return (
     <Box m="20px">
+
       {/* Header section */}
       <Box>
         <Header title="Your Dashboard" subtitle="Welcome AR BarberShop!" />
       </Box>
-      
-      {/* Image section */}
+    
+      {/* Image section
       <Box display="flex" justifyContent="center" mt={3}>
         <img src="/path/to/your-image.jpg" alt="Barbershop" style={{ width: "50%" }} />
-      </Box>
+      </Box> */}
       
       {/* Button section centered below the image */}
       <Box display="flex" justifyContent="center" mt={3}>
