@@ -1,6 +1,5 @@
 // src/components/FrontEnd/MainPage.jsx
 
-import React from 'react';
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ImgSlider } from './signup/ImgSlider';

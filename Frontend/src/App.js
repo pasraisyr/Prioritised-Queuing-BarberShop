@@ -1,5 +1,5 @@
 // App.js
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AdminPages from "./AdminPages";
 import SignInSide from "./FrontEnd/login/SignInSide";
 import SignUpSide from "./FrontEnd/signup/SignUpSide";
@@ -9,6 +9,7 @@ import CustomerPages from "./CustomerPages";
 import MainPage from "./FrontEnd/MainPage";
 
 import NewBooking from "./FrontEnd/booking/NewBooking";
+import Header from "./components/Header";
 //import DashboardCustomer from "./CustomersViews/scense/dashboard";
 
 
@@ -20,11 +21,14 @@ import NewBooking from "./FrontEnd/booking/NewBooking";
 function App() {
   return (
     <>
+   
     <Routes>
+      
     <Route 
         path="/" 
         element={
             <MainPage />
+         
           }
         />
     <Route
