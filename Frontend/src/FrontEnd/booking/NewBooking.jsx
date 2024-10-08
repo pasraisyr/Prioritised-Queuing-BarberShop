@@ -4,11 +4,10 @@ import {
     TextField,
     MenuItem,
     Button,
-    Grid,
     Box,
     Typography,
 } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -17,7 +16,7 @@ import dayjs from 'dayjs';
 import AuthService from '../../Auth/AuthService';
 
 
-const defaultTheme = createTheme();
+
 const timeSlots = [
   '10:00 AM - 11:00 AM',
   '11:00 AM - 12:00 PM',
