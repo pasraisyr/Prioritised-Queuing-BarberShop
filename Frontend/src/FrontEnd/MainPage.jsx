@@ -1,10 +1,12 @@
 // src/components/FrontEnd/MainPage.jsx
 
+import React from 'react';
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { ImgSlider } from './signup/ImgSlider';
 
 const MainPage = ({ isAuthenticated }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleBooking = () => {
     if (isAuthenticated) {
@@ -14,7 +16,6 @@ const MainPage = ({ isAuthenticated }) => {
     }
   };
 
-
   return (
     <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh">
       <Typography variant="h2" gutterBottom>
@@ -23,6 +24,11 @@ const MainPage = ({ isAuthenticated }) => {
       <Typography variant="h5" gutterBottom>
         Your premium barbershop booking system
       </Typography>
+
+      <Box width="80%" maxWidth="700px" mx="auto">
+        <ImgSlider />
+      </Box>
+
       <Button
         variant="contained"
         color="primary"
