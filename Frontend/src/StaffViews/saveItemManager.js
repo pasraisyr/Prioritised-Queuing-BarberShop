@@ -22,7 +22,7 @@ const SaveItemsManager = {
       formData.append('isHourly', isHourly);
       formData.append('cPercentage', cPercentage);
       formData.append('hRate', hRate);
-      formData.append('dob', dob);c
+      formData.append('dob', dob);
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }
