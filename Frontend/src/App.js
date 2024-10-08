@@ -1,9 +1,6 @@
 // App.js
 
-import { Routes, Route } from "react-router-dom";
-
 import {  Routes, Route } from "react-router-dom";
-
 import AdminPages from "./AdminPages";
 import SignInSide from "./FrontEnd/login/SignInSide";
 import SignUpSide from "./FrontEnd/signup/SignUpSide";
