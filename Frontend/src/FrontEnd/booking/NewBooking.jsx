@@ -1,5 +1,4 @@
-import React, { useState, Component } from 'react';
-import { AppointmentPicker } from 'react-appointment-picker';
+import React, { useState } from 'react';
 import {
     Container,
     TextField,
@@ -10,51 +9,40 @@ import {
 } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import AuthService from '../../Auth/AuthService';
-import { GridRow } from '@mui/x-data-grid';
+
 
 const defaultTheme = createTheme();
-const timeSlots = [
-    '10:00 AM - 11:00 AM',
-    '11:00 AM - 12:00 PM',
-    '12:00 PM - 01:00 PM',
-    '01:00 PM - 02:00 PM',
-    '02:00 PM - 03:00 PM',
-    '03:00 PM - 04:00 PM',
-];
-
 const packages = [
-    { label: 'Basic Haircut', value: 'basic' },
-    { label: 'Haircut + Beard Trim', value: 'haircut_beard' },
-    { label: 'Deluxe Grooming Package', value: 'deluxe' },
+    { label: 'Basic Haircut', value: 'basic', price: 20 },
+    { label: 'Haircut + Beard Trim', value: 'haircut_beard', price: 30 },
+    { label: 'Deluxe Grooming Package', value: 'deluxe', price: 100 },
 ];
 
 const styles = [
-    { label: 'Buzz Cut', value: 'buzz' },
-    { label: 'Pompadour', value: 'pompadour' },
+    { label: 'Buzz Cut', value: 'buzz'},
+    { label: 'Pompadour', value: 'pompadour'},
     { label: 'Undercut', value: 'undercut' },
-    { label: 'Fade', value: 'fade' },
+    { label: 'Fade', value: 'fade'},
 ];
 
 export default function NewBooking() {
     const [selectedDate, setSelectedDate] = useState(dayjs());
-    const [selectedSlot, setSelectedSlot] = useState('');
+    const [selectedTime, setSelectedTime] = useState(dayjs());
     const [selectedPackage, setSelectedPackage] = useState('');
     const [selectedStyle, setSelectedStyle] = useState('');
-    const [appointments, setAppointments] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [continuousLoading, setContinuousLoading] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0);
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const success = await AuthService.book(selectedDate, selectedSlot, selectedPackage, selectedStyle);
+            const success = await AuthService.bookings(selectedDate, selectedTime, selectedPackage, selectedStyle);
             if (success) {
                 navigate('/');
             } else {
@@ -65,96 +53,92 @@ export default function NewBooking() {
             alert('An error occurred while saving.');
         }
     };
+        // Handle the date and time change
+    const handleDateTimeChange = (newValue) => {
+      setSelectedDate(newValue);
+      setSelectedTime(newValue);
 
-    const addAppointmentCallback = ({ addedAppointment: { day, number, time, id }, addCb }) => {
-        setLoading(true);
-        setTimeout(() => {
-            console.log(`Added appointment ${number}, day ${day}, time ${time}, id ${id}`);
-            addCb(day, number, time, id);
-            setLoading(false);
-        }, 1000);
+      // Extract the date and time separately
+      const date = newValue.format('DD-MM-YYYY'); 
+      const time = newValue.format('HH:mm'); 
+    };
+      // Handle package change
+    const handlePackageChange = (event) => {
+      const selectedPackageValue = event.target.value;
+      const selectedPackageObj = packages.find((pkg) => pkg.value === selectedPackageValue);
+
+      setSelectedPackage(selectedPackageValue);
+      setTotalPrice(selectedPackageObj ? selectedPackageObj.price : 0);
     };
 
-    const removeAppointmentCallback = ({ day, number, time, id }, removeCb) => {
-        setLoading(true);
-        setTimeout(() => {
-            console.log(`Removed appointment ${number}, day ${day}, time ${time}, id ${id}`);
-            removeCb(day, number);
-            setLoading(false);
-        }, 1000);
+    // Handle style change
+    const handleStyleChange = (event) => {
+      setSelectedStyle(event.target.value);
     };
-
-    const days = [
-        [
-            { id: 1, number: 1, isSelected: true, periods: 2 },
-            { id: 2, number: 2 },
-            null,
-            { id: 3, number: '3', isReserved: true },
-            { id: 4, number: '4' },
-            null,
-            { id: 5, number: 5 },
-            { id: 6, number: 6 },
-        ],
-        // Add other days as needed...
-    ];
 
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container maxWidth="md">
                 <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh">
                     <Typography variant="h3" gutterBottom>
-                        Book Available Timeslot
+                        Book Available Slot
                     </Typography>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '10px'}}>
                     <form onSubmit={handleSubmit}>
-                      <div className='flex flex-row container'> 
-                    <AppointmentPicker
-                        
-                        addAppointmentCallback={addAppointmentCallback}
-                        removeAppointmentCallback={removeAppointmentCallback}
-                        initialDay={new Date()}
-                        
-                        days={days}
-                        maxReservableAppointments={1}
-                        visible
-                        loading={loading}
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DateTimePicker
+                      label="Choose Date & Time"
+                      value={selectedDate}
+                      onChange={handleDateTimeChange}
+                      renderInput={(params) => <TextField {...params} fullWidth />}
                     />
-                    </div>
-                        <TextField
-                            select
-                            label="Select Package"
-                            value={selectedPackage}
-                            onChange={(e) => setSelectedPackage(e.target.value)}
-                            margin="normal"
-                            required
-                            fullWidth
-                        >
-                            {packages.map((pkg) => (
-                                <MenuItem key={pkg.value} value={pkg.value}>
-                                    {pkg.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <TextField
-                            select
-                            label="Select Style"
-                            value={selectedStyle}
-                            onChange={(e) => setSelectedStyle(e.target.value)}
-                            margin="normal"
-                            required
-                            fullWidth
-                        >
-                            {styles.map((style) => (
-                                <MenuItem key={style.value} value={style.value}>
-                                    {style.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <Button type="submit" variant="contained" color="primary" fullWidth>
-                            Proceed Booking
-                        </Button>
+                    <p>Selected Date: {selectedDate.format('DD-MM-YYYY')}</p>
+                    <p>Selected Time: {selectedTime.format('HH:mm')}</p>
+                  </LocalizationProvider>
+                        {/* Package selection */}
+                    <TextField
+                      select
+                      label="Select Package"
+                      value={selectedPackage}
+                      onChange={handlePackageChange}
+                      margin="normal"
+                      fullWidth
+                    >
+                      {packages.map((pkg) => (
+                        <MenuItem key={pkg.value} value={pkg.value}>
+                          {pkg.label} - ${pkg.price}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+
+                    {/* Style selection */}
+                    <TextField
+                      select
+                      label="Select Haircut Style"
+                      value={selectedStyle}
+                      onChange={handleStyleChange}
+                      margin="normal"
+                      fullWidth
+                    >
+                      {styles.map((style) => (
+                        <MenuItem key={style.value} value={style.value}>
+                          {style.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                    <Typography variant="h6" style={{ marginTop: '20px' }}>
+                      Total Price: ${totalPrice}
+                    </Typography>
+
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      style={{ marginTop: '20px' }}
+                      disabled={totalPrice === 0 || !selectedStyle}
+                      
+                    >
+                      Proceed Booking
+                    </Button>
                     </form>
-                    </div>
                 </Box>
             </Container>
         </ThemeProvider>
