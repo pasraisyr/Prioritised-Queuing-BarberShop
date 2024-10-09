@@ -72,19 +72,18 @@ const AuthService = {
       }
     },
 
-    async book(selectedDate, selectedSlot, selectedPackage, selectedStyle) {
+    async bookings(selectedDate, selectedTime, selectedPackage, selectedStyle) {
       //  const username = await localStorage.getItem('username');
     
         try {
           const formData = new FormData();
-          //formData.append('username', username);
           formData.append('date', selectedDate);
-          formData.append('hairPackage', selectedPackage);
+          formData.append('time', selectedTime);
+          formData.append('packageType', selectedPackage);
           formData.append('style', selectedStyle);
-          formData.append('slot', selectedSlot);
     
           const response = await axios.post(
-            `${API_BASE_URL}/book`,
+            `${API_BASE_URL}/bookings`,
             formData,
             {
               headers: {
