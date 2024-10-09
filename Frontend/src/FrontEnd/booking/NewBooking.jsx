@@ -31,10 +31,10 @@ const styles = [
 ];
 
 export default function NewBooking() {
-    const [selectedDate, setSelectedDate] = useState(dayjs());
-    const [selectedTime, setSelectedTime] = useState(dayjs());
-    const [selectedPackage, setSelectedPackage] = useState('');
-    const [selectedStyle, setSelectedStyle] = useState('');
+    const [date, setDate] = useState(dayjs());
+    const [time, setTime] = useState(dayjs());
+    const [packageType, setPackageType] = useState('');
+    const [style, setStyle] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
     const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ export default function NewBooking() {
         event.preventDefault();
 
         try {
-            const success = await AuthService.bookings(selectedDate, selectedTime, selectedPackage, selectedStyle);
+            const success = await AuthService.bookings(date, time, packageType, style);
             if (success) {
                 navigate('/');
             } else {
@@ -55,8 +55,8 @@ export default function NewBooking() {
     };
         // Handle the date and time change
     const handleDateTimeChange = (newValue) => {
-      setSelectedDate(newValue);
-      setSelectedTime(newValue);
+      setDate(newValue);
+      setTime(newValue);
 
       // Extract the date and time separately
       const date = newValue.format('DD-MM-YYYY'); 
@@ -67,13 +67,13 @@ export default function NewBooking() {
       const selectedPackageValue = event.target.value;
       const selectedPackageObj = packages.find((pkg) => pkg.value === selectedPackageValue);
 
-      setSelectedPackage(selectedPackageValue);
+      setPackageType(selectedPackageValue);
       setTotalPrice(selectedPackageObj ? selectedPackageObj.price : 0);
     };
 
     // Handle style change
     const handleStyleChange = (event) => {
-      setSelectedStyle(event.target.value);
+      setStyle(event.target.value);
     };
 
     return (
@@ -87,18 +87,18 @@ export default function NewBooking() {
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateTimePicker
                       label="Choose Date & Time"
-                      value={selectedDate}
+                      value={date}
                       onChange={handleDateTimeChange}
                       renderInput={(params) => <TextField {...params} fullWidth />}
                     />
-                    <p>Selected Date: {selectedDate.format('DD-MM-YYYY')}</p>
-                    <p>Selected Time: {selectedTime.format('HH:mm')}</p>
+                    <p>Selected Date: {date.format('DD-MM-YYYY')}</p>
+                    <p>Selected Time: {time.format('HH:mm')}</p>
                   </LocalizationProvider>
                         {/* Package selection */}
                     <TextField
                       select
                       label="Select Package"
-                      value={selectedPackage}
+                      value={packageType}
                       onChange={handlePackageChange}
                       margin="normal"
                       fullWidth
@@ -114,7 +114,7 @@ export default function NewBooking() {
                     <TextField
                       select
                       label="Select Haircut Style"
-                      value={selectedStyle}
+                      value={style}
                       onChange={handleStyleChange}
                       margin="normal"
                       fullWidth
@@ -133,7 +133,7 @@ export default function NewBooking() {
                       variant="contained"
                       color="primary"
                       style={{ marginTop: '20px' }}
-                      disabled={totalPrice === 0 || !selectedStyle}
+                      disabled={totalPrice === 0 || !style}
                       
                     >
                       Proceed Booking
