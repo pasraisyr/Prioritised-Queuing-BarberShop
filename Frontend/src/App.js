@@ -100,8 +100,7 @@ function App() {
         }
     />
       
-        }
-      />
+        
       <Route path="/new-booking" element={<NewBooking />} />
 
 
