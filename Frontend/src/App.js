@@ -13,37 +13,69 @@ import MainPage from "./FrontEnd/MainPage";
 import NewBooking from "./FrontEnd/booking/NewBooking";
 import PaymentPage from "./FrontEnd/booking/PaymentPage";
 
-const HodViewsLayout = ({ children }) => {
-  const [theme, colorMode] = useMode();
+// const HodViewsLayout = ({ children }) => {
+//   const [theme, colorMode] = useMode();
 
-  return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+//   return (
+//     <ColorModeContext.Provider value={colorMode}>
+//       <ThemeProvider theme={theme}>
+//         <CssBaseline />
+//         <main className="content">
+//           {showTopbar && <BasicTopbar />}
+//           {children}
+//         </main>
+//       </ThemeProvider>
+//     </ColorModeContext.Provider>
+//   );
+//   };
+
+  const HodViewsLayout = ({ children, showTopbar = true }) => {
+    const [theme, colorMode] = useMode();
+  
+    return (
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
           <main className="content">
-            <BasicTopbar />
+            {showTopbar && <BasicTopbar />}
             {children}
           </main>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
-  );
-};
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    );
+  };
+  
 
-const SignInlayout = ({ children }) => {
-  const [theme, colorMode] = useMode();
+//   return (
+//     <ColorModeContext.Provider value={colorMode}>
+//       <ThemeProvider theme={theme}>
+//         <CssBaseline />
+//           <main className="content">
+//             <BasicTopbar />
+//             {children}
+//           </main>
+//       </ThemeProvider>
+//     </ColorModeContext.Provider>
+//   );
+// };
 
-  return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-          <main className="content">
-            <BasicTopbar />
-            {children}
-          </main>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
-  );
-};
+
+
+// const SignInlayout = ({ children }) => {
+//   const [theme, colorMode] = useMode();
+
+//   return (
+//     <ColorModeContext.Provider value={colorMode}>
+//       <ThemeProvider theme={theme}>
+//         <CssBaseline />
+//           {/* <main className="content">
+//             <BasicTopbar />
+//             {children}
+//           </main> */}
+//       </ThemeProvider>
+//     </ColorModeContext.Provider>
+//   );
+// };
 
 
 function App() {
@@ -52,10 +84,26 @@ function App() {
    
     <Routes>
       
+
     <Route path="/" element={
       <HodViewsLayout> 
         <MainPage />
       </HodViewsLayout>}/>
+
+   
+    <Route
+        path="/signin"
+        element={
+          <HodViewsLayout showTopbar={false}>
+            <SignInSide />
+            </HodViewsLayout>
+        }
+    />
+      
+        }
+      />
+      <Route path="/new-booking" element={<NewBooking />} />
+
 
     <Route path="/signin" element={<SignInSide />}/>
     <Route path="/signup" element={<SignUpSide />}/>
