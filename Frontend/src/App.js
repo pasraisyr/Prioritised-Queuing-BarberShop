@@ -23,37 +23,69 @@ import Header from "./components/Header";
 // import DashboardCustomer from "./CustomersViews/scense/dashboard";
 
 
-const HodViewsLayout = ({ children }) => {
-  const [theme, colorMode] = useMode();
+// const HodViewsLayout = ({ children }) => {
+//   const [theme, colorMode] = useMode();
 
-  return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+//   return (
+//     <ColorModeContext.Provider value={colorMode}>
+//       <ThemeProvider theme={theme}>
+//         <CssBaseline />
+//         <main className="content">
+//           {showTopbar && <BasicTopbar />}
+//           {children}
+//         </main>
+//       </ThemeProvider>
+//     </ColorModeContext.Provider>
+//   );
+//   };
+
+  const HodViewsLayout = ({ children, showTopbar = true }) => {
+    const [theme, colorMode] = useMode();
+  
+    return (
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
           <main className="content">
-            <BasicTopbar />
+            {showTopbar && <BasicTopbar />}
             {children}
           </main>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
-  );
-};
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    );
+  };
+  
 
-const SignInlayout = ({ children }) => {
-  const [theme, colorMode] = useMode();
+//   return (
+//     <ColorModeContext.Provider value={colorMode}>
+//       <ThemeProvider theme={theme}>
+//         <CssBaseline />
+//           <main className="content">
+//             <BasicTopbar />
+//             {children}
+//           </main>
+//       </ThemeProvider>
+//     </ColorModeContext.Provider>
+//   );
+// };
 
-  return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-          <main className="content">
-            <BasicTopbar />
-            {children}
-          </main>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
-  );
-};
+
+
+// const SignInlayout = ({ children }) => {
+//   const [theme, colorMode] = useMode();
+
+//   return (
+//     <ColorModeContext.Provider value={colorMode}>
+//       <ThemeProvider theme={theme}>
+//         <CssBaseline />
+//           {/* <main className="content">
+//             <BasicTopbar />
+//             {children}
+//           </main> */}
+//       </ThemeProvider>
+//     </ColorModeContext.Provider>
+//   );
+// };
 
 
 function App() {
@@ -73,7 +105,9 @@ function App() {
     <Route
         path="/signin"
         element={
+          <HodViewsLayout showTopbar={false}>
             <SignInSide />
+            </HodViewsLayout>
         }
     />
       <Route 
