@@ -54,13 +54,4 @@ public class BookingService {
     public void deleteBooking(String id) {
         bookingRepository.deleteById(id);
     }
-
-    // // Login validation
-    // public Booking loginUser(String username, String password) {
-    //     User user = userRepository.findByUsername(username);
-    //     if (user != null && user.getPassword().equals(password)) {
-    //         return user;
-    //     }
-    //     return null;
-    // }
 }

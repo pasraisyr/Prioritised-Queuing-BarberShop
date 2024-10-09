@@ -6,7 +6,7 @@ const DashboardCustomer = () => {
   const navigate = useNavigate(); // React Router hook for navigation
 
   const handleBooking = () => {
-    navigate("/booking-form"); // Navigate to the booking form page
+    navigate("/new-booking"); // Navigate to the booking form page
   };
 
   return (
