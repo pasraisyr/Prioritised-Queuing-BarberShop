@@ -1,36 +1,51 @@
 import React, { useState } from 'react';
-import {
-    Container,
-    TextField,
-    MenuItem,
-    Button,
-    Box,
-    Typography,
-} from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Paper from '@mui/material/Paper';
+import MenuItem from '@mui/material/MenuItem'; // For the role dropdown
+import AuthService from '../../Auth/AuthService'; // Adjust the path to your AuthService file
+import { useNavigate, Link as RouterLink } from 'react-router-dom'; // Import RouterLink
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
-import AuthService from '../../Auth/AuthService';
 
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const defaultTheme = createTheme();
 const packages = [
-    { label: 'Basic Haircut', value: 'basic', price: 20 },
-    { label: 'Haircut + Beard Trim', value: 'haircut_beard', price: 30 },
-    { label: 'Deluxe Grooming Package', value: 'deluxe', price: 100 },
+  { label: 'Basic Haircut', value: 'basic', price: 20 },
+  { label: 'Haircut + Beard Trim', value: 'haircut_beard', price: 30 },
+  { label: 'Deluxe Grooming Package', value: 'deluxe', price: 100 },
 ];
 
 const styles = [
-    { label: 'Buzz Cut', value: 'buzz'},
-    { label: 'Pompadour', value: 'pompadour'},
-    { label: 'Undercut', value: 'undercut' },
-    { label: 'Fade', value: 'fade'},
+  { label: 'Buzz Cut', value: 'buzz'},
+  { label: 'Pompadour', value: 'pompadour'},
+  { label: 'Undercut', value: 'undercut' },
+  { label: 'Fade', value: 'fade'},
 ];
 
-export default function NewBooking() {
+export default function Bookings() {
     const [date, setDate] = useState(dayjs());
     const [time, setTime] = useState(dayjs());
     const [packageType, setPackageType] = useState('');
@@ -38,109 +53,101 @@ export default function NewBooking() {
     const [totalPrice, setTotalPrice] = useState(0);
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    try {
+      const success = await AuthService.bookings(date, time, packageType, style);
+      if (success) {
+          navigate('/payment'); // Navigate to payment page
+      } else {
+          alert('Error saving data');
+      }
+  } catch (error) {
+      console.error('Saving Error:', error);
+      alert('An error occurred while saving.');
+  }
+};
 
-        try {
-            const success = await AuthService.bookings(date, time, packageType, style);
-            if (success) {
-                navigate('/');
-            } else {
-                alert('Error saving data');
-            }
-        } catch (error) {
-            console.error('Saving Error:', error);
-            alert('An error occurred while saving.');
-        }
-    };
-        // Handle the date and time change
-    const handleDateTimeChange = (newValue) => {
-      setDate(newValue);
-      setTime(newValue);
+const handleDateTimeChange = (newValue) => {
+  setDate(newValue);
+  setTime(newValue);
+};
 
-      // Extract the date and time separately
-      const date = newValue.format('DD-MM-YYYY'); 
-      const time = newValue.format('HH:mm'); 
-    };
-      // Handle package change
-    const handlePackageChange = (event) => {
-      const selectedPackageValue = event.target.value;
-      const selectedPackageObj = packages.find((pkg) => pkg.value === selectedPackageValue);
+const handlePackageChange = (event) => {
+  const selectedPackageValue = event.target.value;
+  const selectedPackageObj = packages.find((pkg) => pkg.value === selectedPackageValue);
 
-      setPackageType(selectedPackageValue);
-      setTotalPrice(selectedPackageObj ? selectedPackageObj.price : 0);
-    };
+  setPackageType(selectedPackageValue);
+  setTotalPrice(selectedPackageObj ? selectedPackageObj.price : 0);
+};
 
-    // Handle style change
-    const handleStyleChange = (event) => {
-      setStyle(event.target.value);
-    };
+const handleStyleChange = (event) => {
+  setStyle(event.target.value);
+};
 
-    return (
-        <ThemeProvider theme={defaultTheme}>
-            <Container maxWidth="md">
-                <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh">
-                    <Typography variant="h3" gutterBottom>
-                        Book Available Slot
-                    </Typography>
-                    <form onSubmit={handleSubmit}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+
+  return (
+    <ThemeProvider theme={defaultTheme}>
+   <Grid container component="main" sx={{ height: '100vh' }}>
+        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh">
+            <Typography variant="h3" gutterBottom>
+                Book Available Slot
+            </Typography>
+            <form onSubmit={handleSubmit}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateTimePicker
-                      label="Choose Date & Time"
-                      value={date}
-                      onChange={handleDateTimeChange}
-                      renderInput={(params) => <TextField {...params} fullWidth />}
+                        label="Choose Date & Time"
+                        value={date}
+                        onChange={handleDateTimeChange}
+                        renderInput={(params) => <TextField {...params} fullWidth />}
                     />
-                    <p>Selected Date: {date.format('DD-MM-YYYY')}</p>
-                    <p>Selected Time: {time.format('HH:mm')}</p>
-                  </LocalizationProvider>
-                        {/* Package selection */}
-                    <TextField
-                      select
-                      label="Select Package"
-                      value={packageType}
-                      onChange={handlePackageChange}
-                      margin="normal"
-                      fullWidth
-                    >
-                      {packages.map((pkg) => (
+                </LocalizationProvider>
+                <TextField
+                    select
+                    label="Select Package"
+                    value={packageType}
+                    onChange={handlePackageChange}
+                    margin="normal"
+                    fullWidth
+                >
+                    {packages.map((pkg) => (
                         <MenuItem key={pkg.value} value={pkg.value}>
-                          {pkg.label} - ${pkg.price}
+                            {pkg.label} - ${pkg.price}
                         </MenuItem>
-                      ))}
-                    </TextField>
-
-                    {/* Style selection */}
-                    <TextField
-                      select
-                      label="Select Haircut Style"
-                      value={style}
-                      onChange={handleStyleChange}
-                      margin="normal"
-                      fullWidth
-                    >
-                      {styles.map((style) => (
+                    ))}
+                </TextField>
+                <TextField
+                    select
+                    label="Select Haircut Style"
+                    value={style}
+                    onChange={handleStyleChange}
+                    margin="normal"
+                    fullWidth
+                >
+                    {styles.map((style) => (
                         <MenuItem key={style.value} value={style.value}>
-                          {style.label}
+                            {style.label}
                         </MenuItem>
-                      ))}
-                    </TextField>
-                    <Typography variant="h6" style={{ marginTop: '20px' }}>
-                      Total Price: ${totalPrice}
-                    </Typography>
+                    ))}
+                </TextField>
+                <Typography variant="h6" style={{ marginTop: '20px' }}>
+                    Total Price: ${totalPrice}
+                </Typography>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    style={{ marginTop: '20px' }}
+                    disabled={totalPrice === 0 || !style}
+                    type="submit"
+                >
+                    Proceed Booking
+                </Button>
+            </form>
+        </Box>
+    </Grid>
+</ThemeProvider>
+);
 
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      style={{ marginTop: '20px' }}
-                      disabled={totalPrice === 0 || !style}
-                      
-                    >
-                      Proceed Booking
-                    </Button>
-                    </form>
-                </Box>
-            </Container>
-        </ThemeProvider>
-    );
 }
