@@ -10,7 +10,7 @@ const MainPage = ({ isAuthenticated }) => {
 
   const handleBooking = () => {
     if (isAuthenticated) {
-      navigate("/booking-form"); // Navigate to booking form
+      navigate("/new-booking"); // Navigate to booking form
     } else {
       navigate("/signin"); // Navigate to sign-in if not authenticated
     }
