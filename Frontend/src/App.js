@@ -15,6 +15,7 @@ import CustomerPages from "./CustomerPages";
 import MainPage from "./FrontEnd/MainPage";
 import NewBooking from "./FrontEnd/booking/NewBooking";
 import HairStyleAd from "./FrontEnd/ads/HairStyleAd";
+import PackageAd from "./FrontEnd/ads/PackageAd";
 // import Header from "./components/Header";
 //import DashboardCustomer from "./CustomersViews/scense/dashboard";
 
@@ -86,7 +87,7 @@ function App() {
 
     
       <Route path="/hair-style" element={< HairStyleAd/>} />
-     
+      <Route path="/package" element={< PackageAd/>} />
       <Route
         path="/catalogue"
         element={
@@ -94,6 +95,8 @@ function App() {
         }
       />
       <Route path="/new-booking" element={<NewBooking />} />
+
+      
 
       <Route
         path="/catalogue"
