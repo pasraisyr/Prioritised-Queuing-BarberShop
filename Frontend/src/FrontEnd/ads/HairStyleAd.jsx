@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Typography, Box, Container } from '@mui/material';
 import { fade, manBun, pompadour, undercut, buzzCut } from "../../assets/images";
 
+//JAP
 // Array of hair styles with name, image, and description
 const hairStyles = [
   {
