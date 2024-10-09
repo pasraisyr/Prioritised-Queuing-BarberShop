@@ -11,6 +11,19 @@ import StaffPages from "./StaffPages";
 import CustomerPages from "./CustomerPages";
 import MainPage from "./FrontEnd/MainPage";
 import NewBooking from "./FrontEnd/booking/NewBooking";
+
+import Header from "./components/Header";
+import PackageAd from "./FrontEnd/ads/PackageAd";
+import HairStyleAd from "./FrontEnd/ads/HairStyleAd";
+
+//import DashboardCustomer from "./CustomersViews/scense/dashboard";
+
+
+// import BookingForm from "./CustomersViews/scense/dashboard";
+// import DashboardCustomer from "./CustomersViews/scense/dashboard";
+
+
+
 import PaymentPage from "./FrontEnd/booking/PaymentPage";
 
 // const HodViewsLayout = ({ children }) => {
@@ -36,6 +49,7 @@ import PaymentPage from "./FrontEnd/booking/PaymentPage";
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+
           <main className="content">
             {showTopbar && <BasicTopbar />}
             {children}
@@ -100,8 +114,12 @@ function App() {
         }
     />
       
-        
-      <Route path="/new-booking" element={<NewBooking />} />
+     
+
+
+      <Route path="/hair-style" element={<HairStyleAd />} />
+      <Route path="/package-style" element={<PackageAd/>} />
+     
 
 
     <Route path="/signin" element={<SignInSide />}/>
