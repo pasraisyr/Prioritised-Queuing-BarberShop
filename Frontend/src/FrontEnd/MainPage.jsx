@@ -3,6 +3,7 @@
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ImgSlider } from './signup/ImgSlider';
+import Paper from '@mui/material/Paper';
 
 const MainPage = ({ isAuthenticated }) => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const MainPage = ({ isAuthenticated }) => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh">
+    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="80vh" bgcolor={'secondary.main'}>
       <Typography variant="h2" gutterBottom>
         Welcome to AR BarberShop
       </Typography>
@@ -24,7 +25,7 @@ const MainPage = ({ isAuthenticated }) => {
         Your premium barbershop booking system
       </Typography>
 
-      <Box width="80%" maxWidth="700px" mx="auto">
+      <Box width="80%" maxWidth="700px" mx="auto" sx={{ boxShadow: '0 8px 8px rgba(0, 0, 0, 20)' }}>
         <ImgSlider />
       </Box>
 
@@ -32,7 +33,7 @@ const MainPage = ({ isAuthenticated }) => {
         variant="contained"
         color="primary"
         onClick={handleBooking}
-        sx={{ mt: 3 }}
+        sx={{ mt: 6 }}
       >
         Book Your Slot Now!
       </Button>
