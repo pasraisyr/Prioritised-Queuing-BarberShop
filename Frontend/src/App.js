@@ -1,7 +1,9 @@
 // App.js
+
 import { ColorModeContext, useMode } from "./base/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import BasicTopbar from "./HodViews/scense/global/BasicTopbar";
+
 
 import {  Routes, Route } from "react-router-dom";
 import AdminPages from "./AdminPages";

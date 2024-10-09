@@ -71,6 +71,43 @@ const AuthService = {
         throw error;
       }
     },
+
+    async book(selectedDate, selectedSlot, selectedPackage, selectedStyle) {
+      //  const username = await localStorage.getItem('username');
+    
+        try {
+          const formData = new FormData();
+          //formData.append('username', username);
+          formData.append('date', selectedDate);
+          formData.append('hairPackage', selectedPackage);
+          formData.append('style', selectedStyle);
+          formData.append('slot', selectedSlot);
+    
+          const response = await axios.post(
+            `${API_BASE_URL}/book`,
+            formData,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                "Accept": "*/*"
+              },
+            }
+          );
+    
+          if (response.status === 200) {
+            return response.data;
+          }
+        } catch (error) {
+          if (error.response) {
+            console.error('Server responded with an error:', error.response.data);
+          } else if (error.request) {
+            console.error('No response received:', error.request);
+          } else {
+            console.error('Error setting up the request:', error.message);
+          }
+          throw error;
+        }
+      },
   
 
 
