@@ -1,9 +1,9 @@
 // App.js
-
-import { Routes, Route } from "react-router-dom";
+import { ColorModeContext, useMode } from "./base/theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import BasicTopbar from "./HodViews/scense/global/BasicTopbar";
 
 import {  Routes, Route } from "react-router-dom";
-
 import AdminPages from "./AdminPages";
 import SignInSide from "./FrontEnd/login/SignInSide";
 import SignUpSide from "./FrontEnd/signup/SignUpSide";
@@ -21,6 +21,38 @@ import Header from "./components/Header";
 // import DashboardCustomer from "./CustomersViews/scense/dashboard";
 
 
+const HodViewsLayout = ({ children }) => {
+  const [theme, colorMode] = useMode();
+
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+          <main className="content">
+            <BasicTopbar />
+            {children}
+          </main>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+};
+
+const SignInlayout = ({ children }) => {
+  const [theme, colorMode] = useMode();
+
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+          <main className="content">
+            <BasicTopbar />
+            {children}
+          </main>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+};
+
 
 function App() {
   return (
@@ -31,8 +63,9 @@ function App() {
     <Route 
         path="/" 
         element={
+          <HodViewsLayout>
             <MainPage />
-         
+            </HodViewsLayout>
           }
         />
     <Route
