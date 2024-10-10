@@ -1,5 +1,3 @@
-// App.js
-
 import { ColorModeContext, useMode } from "./base/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import BasicTopbar from "./HodViews/scense/global/BasicTopbar";
@@ -14,8 +12,16 @@ import NewBooking from "./FrontEnd/booking/NewBooking";
 import PackageAd from "./FrontEnd/ads/PackageAd";
 import HairStyleAd from "./FrontEnd/ads/HairStyleAd";
 import PaymentPage from "./FrontEnd/booking/PaymentPage";
+
+import DashboardCustomer from "./CustomersViews/scense/dashboard";
+import DashboardStaff from "./StaffViews/scense/dashboard";
+import QueueDisplay from './FrontEnd/booking/QueueDisplay';
 import ForgotPassword from "./FrontEnd/login/ForgotPassword";
 import ResetPassword from "./FrontEnd/login/ResetPassword";
+
+import ForgotPassword from "./FrontEnd/login/ForgotPassword";
+import ResetPassword from "./FrontEnd/login/ResetPassword";
+
 
 
 
@@ -107,6 +113,47 @@ function App() {
         }
     />
 
+
+    <Route
+        path="/dashboard-customer" element={
+          <HodViewsLayout >
+          <DashboardCustomer />
+          </HodViewsLayout>
+        }
+    />
+    <Route
+        path="/hair-style" element={
+          <HodViewsLayout >
+          <HairStyleAd />
+          </HodViewsLayout>
+        }
+    />
+    <Route
+        path="/package-style" element={
+          <HodViewsLayout >
+          <PackageAd />
+          </HodViewsLayout>
+        }
+    />
+    
+    <Route
+        path="/dashboard-staff" element={
+          <HodViewsLayout >
+          <DashboardStaff />
+          </HodViewsLayout>
+        }
+    />
+    <Route
+        path="/queue-display" element={
+          <HodViewsLayout >
+          <QueueDisplay />
+          </HodViewsLayout>
+        }
+    />
+   
+   
+
+
 <Route
         path="/payment" element={
           <HodViewsLayout showTopbar={false}>
@@ -119,6 +166,7 @@ function App() {
     <Route path="/package-style" element={<PackageAd/>} />
     <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/reset-password" element={<ResetPassword />} />
+
 
     </Routes>
       <CustomerPages/>

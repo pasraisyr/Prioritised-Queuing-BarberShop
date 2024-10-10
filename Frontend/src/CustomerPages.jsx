@@ -38,9 +38,9 @@ const CustomerPages = () =>  (
 <Route
         path="/dashboard-customer"
         element={
-          <ManagerViewsLayout>
+          // <ManagerViewsLayout>
             <DashboardCustomer />
-          </ManagerViewsLayout>
+          // </ManagerViewsLayout>
         }
       />
       <Route
