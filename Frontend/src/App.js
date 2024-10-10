@@ -12,9 +12,13 @@ import NewBooking from "./FrontEnd/booking/NewBooking";
 import PackageAd from "./FrontEnd/ads/PackageAd";
 import HairStyleAd from "./FrontEnd/ads/HairStyleAd";
 import PaymentPage from "./FrontEnd/booking/PaymentPage";
+
 import DashboardCustomer from "./CustomersViews/scense/dashboard";
 import DashboardStaff from "./StaffViews/scense/dashboard";
 import QueueDisplay from './FrontEnd/booking/QueueDisplay';
+import ForgotPassword from "./FrontEnd/login/ForgotPassword";
+import ResetPassword from "./FrontEnd/login/ResetPassword";
+
 import ForgotPassword from "./FrontEnd/login/ForgotPassword";
 import ResetPassword from "./FrontEnd/login/ResetPassword";
 
@@ -108,6 +112,7 @@ function App() {
           </HodViewsLayout>
         }
     />
+
 
     <Route
         path="/dashboard-customer" element={

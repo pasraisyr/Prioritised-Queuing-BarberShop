@@ -1,13 +1,11 @@
 package com.ccsd.Shop.booking;
 
 //import java.time.LocalDateTime;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import org.springframework.data.mongodb.core.mapping.Document;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Document(collection = "bookings")
@@ -15,19 +13,23 @@ public class Booking {
     @Id
     private String id;
     private LocalDate date; // This can include both date and time
-    private LocalTime time;
+    private String time;
     private String packageType; // For the package
     private String style; // For the style
+    private int status;
+    private double price;
 
     public Booking (){}
 
     // Constructors
-    public Booking(String id, LocalDate date, LocalTime time, String packageType, String style) {
+    public Booking(String id, LocalDate date, String time, String packageType, String style, int status, double price) {
         this.id=id;
         this.date = date;
         this.time = time;
         this.packageType = packageType;
         this.style = style;
+        this.status = status;
+        this.price = price;
     }
     // @JsonFormat(pattern = "dd-MM-yyyy")
     // private LocalDate date;
@@ -42,6 +44,12 @@ public class Booking {
     public void setId(String id){
         this.id = id;
     }
+    public double getPrice(){
+        return price;
+    }
+    public void setPrice(double price){
+        this.price = price;
+    }
     public LocalDate getDate() {
         return date;
     }
@@ -50,12 +58,20 @@ public class Booking {
         this.date = date;
     }
 
-    public LocalTime getTime() {
-        return time;
+   
+    public void setStatus(int status) {
+        this.status = status;
+    }
+    public int getStatus() {
+        return status;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     public String getPackageType() {
@@ -77,8 +93,8 @@ public class Booking {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return date.format(dateFormatter);
     }
-    public String getFormattedTime() {
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        return time.format(timeFormatter);
-    }
+    // public String getFormattedTime() {
+    //     DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    //     return time.format(timeFormatter);
+    // }
 }
