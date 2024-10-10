@@ -38,9 +38,9 @@ const StaffPages = () =>  (
 <Route
         path="/dashboard-staff"
         element={
-          <ManagerViewsLayout>
+          //<ManagerViewsLayout>
             <DashboardStaff />
-          </ManagerViewsLayout>
+          //</ManagerViewsLayout>
         }
       />
       <Route
