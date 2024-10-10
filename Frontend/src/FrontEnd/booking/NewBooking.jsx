@@ -17,6 +17,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import MenuItem from '@mui/material/MenuItem';
 import dayjs from 'dayjs';
 import AuthService from '../../Auth/AuthService';
+import ContentCutIcon from '@mui/icons-material/ContentCut';
 
 function Copyright(props) {
   return (
@@ -84,9 +85,9 @@ export default function NewBooking() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    
       <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
+       
         <Grid
           item
           xs={false}
@@ -111,10 +112,10 @@ export default function NewBooking() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
+            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <ContentCutIcon />
+            </Avatar> */}
+            <Typography component="h1" variant="h5" margin = "30px">
               New Booking
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -163,16 +164,9 @@ export default function NewBooking() {
                   </MenuItem>
                 ))}
               </TextField>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="totalPrice"
-                label="Total Price"
-                name="totalPrice"
-                value={`$${totalPrice}`}
-                disabled
-              />
+              <Typography variant="h6" style={{ marginTop: '20px' }}>
+                            Total Price: ${totalPrice}
+                        </Typography>
               <Button
                 type="submit"
                 fullWidth
@@ -193,6 +187,6 @@ export default function NewBooking() {
           </Box>
         </Grid>
       </Grid>
-    </ThemeProvider>
+  
   );
 }
