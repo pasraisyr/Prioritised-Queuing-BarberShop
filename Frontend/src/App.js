@@ -88,12 +88,17 @@ function App() {
     />
       
      
-
+      <Route
+        path="/new-booking" element={
+          <HodViewsLayout showTopbar={false}>
+          <NewBooking />
+          </HodViewsLayout>
+        }
+    />
 
     <Route path="/hair-style" element={<HairStyleAd />} />
     <Route path="/package-style" element={<PackageAd/>} />
     <Route path="/signup" element={<SignUpSide />}/>
-    <Route path="/new-booking" element={<NewBooking />}/>
     <Route path="/payment" element={<PaymentPage />}/>
 
     </Routes>
