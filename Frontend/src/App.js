@@ -14,6 +14,9 @@ import NewBooking from "./FrontEnd/booking/NewBooking";
 import PackageAd from "./FrontEnd/ads/PackageAd";
 import HairStyleAd from "./FrontEnd/ads/HairStyleAd";
 import PaymentPage from "./FrontEnd/booking/PaymentPage";
+import ForgotPassword from "./FrontEnd/login/ForgotPassword";
+import ResetPassword from "./FrontEnd/login/ResetPassword";
+
 
 
   const HodViewsLayout = ({ children, showTopbar = true }) => {
@@ -86,6 +89,14 @@ function App() {
           </HodViewsLayout>
         }
     />
+
+<Route
+        path="/signup" element={
+          <HodViewsLayout showTopbar={false}>
+          <SignUpSide />
+          </HodViewsLayout>
+        }
+    />
       
      
       <Route
@@ -96,10 +107,18 @@ function App() {
         }
     />
 
+<Route
+        path="/payment" element={
+          <HodViewsLayout showTopbar={false}>
+          <PaymentPage />
+          </HodViewsLayout>
+        }
+    />
+
     <Route path="/hair-style" element={<HairStyleAd />} />
     <Route path="/package-style" element={<PackageAd/>} />
-    <Route path="/signup" element={<SignUpSide />}/>
-    <Route path="/payment" element={<PaymentPage />}/>
+    <Route path="/forgot-password" element={<ForgotPassword />} />
+    <Route path="/reset-password" element={<ResetPassword />} />
 
     </Routes>
       <CustomerPages/>
