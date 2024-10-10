@@ -11,36 +11,10 @@ import StaffPages from "./StaffPages";
 import CustomerPages from "./CustomerPages";
 import MainPage from "./FrontEnd/MainPage";
 import NewBooking from "./FrontEnd/booking/NewBooking";
-
-import Header from "./components/Header";
 import PackageAd from "./FrontEnd/ads/PackageAd";
 import HairStyleAd from "./FrontEnd/ads/HairStyleAd";
-
-//import DashboardCustomer from "./CustomersViews/scense/dashboard";
-
-
-// import BookingForm from "./CustomersViews/scense/dashboard";
-// import DashboardCustomer from "./CustomersViews/scense/dashboard";
-
-
-
 import PaymentPage from "./FrontEnd/booking/PaymentPage";
 
-// const HodViewsLayout = ({ children }) => {
-//   const [theme, colorMode] = useMode();
-
-//   return (
-//     <ColorModeContext.Provider value={colorMode}>
-//       <ThemeProvider theme={theme}>
-//         <CssBaseline />
-//         <main className="content">
-//           {showTopbar && <BasicTopbar />}
-//           {children}
-//         </main>
-//       </ThemeProvider>
-//     </ColorModeContext.Provider>
-//   );
-//   };
 
   const HodViewsLayout = ({ children, showTopbar = true }) => {
     const [theme, colorMode] = useMode();
@@ -106,23 +80,18 @@ function App() {
 
    
     <Route
-        path="/signin"
-        element={
+        path="/signin" element={
           <HodViewsLayout showTopbar={false}>
-            <SignInSide />
-            </HodViewsLayout>
+          <SignInSide />
+          </HodViewsLayout>
         }
     />
       
      
 
 
-      <Route path="/hair-style" element={<HairStyleAd />} />
-      <Route path="/package-style" element={<PackageAd/>} />
-     
-
-
-    <Route path="/signin" element={<SignInSide />}/>
+    <Route path="/hair-style" element={<HairStyleAd />} />
+    <Route path="/package-style" element={<PackageAd/>} />
     <Route path="/signup" element={<SignUpSide />}/>
     <Route path="/new-booking" element={<NewBooking />}/>
     <Route path="/payment" element={<PaymentPage />}/>
