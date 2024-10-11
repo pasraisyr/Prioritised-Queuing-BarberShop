@@ -59,7 +59,7 @@ export const DisplayCard = () => {
             <div key={index} style={{ backgroundColor: 'white', height: '450px', color: 'black', borderRadius: '10px' }}>
               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '10px', padding: '16px' }}>
                 <p style={{ fontSize: '1.25rem', fontWeight: '600' }}>{d.formattedDate}</p>
-                <p style={{ fontSize: '1.25rem', fontWeight: '800' }}>{d.formattedTime}</p>
+                <p style={{ fontSize: '1.25rem', fontWeight: '800' }}>{d.time}</p>
               </div>
             </div>
           ))}
