@@ -114,7 +114,7 @@ const DriverManager = () => {
                 />
             </Box>
             <Link to="/add-driver" style={{ textDecoration: 'none' }}>
-                <Grid container justifyContent="flex-end">
+                <Grid className=' items-center' container justifyContent="flex-end">
                     <Box sx={{ m: 2, }}>
                         <Button 
                             startIcon={<PersonAddAltOutlinedIcon />}

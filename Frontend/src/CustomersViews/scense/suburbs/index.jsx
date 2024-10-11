@@ -81,7 +81,7 @@ const SuburbManagement = () => {
                 />
             </Box>
             <Link to="/add-suburb-manager" style={{ textDecoration: 'none' }}>
-                <Grid container justifyContent="flex-end">
+                <Grid className=' items-center' container justifyContent="flex-end">
                     <Box sx={{ m: 2, }}>
                         <Button 
                             startIcon={<PersonAddAltOutlinedIcon />}

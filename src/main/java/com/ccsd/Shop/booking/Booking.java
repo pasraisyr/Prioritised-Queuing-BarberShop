@@ -1,33 +1,38 @@
 package com.ccsd.Shop.booking;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.springframework.data.mongodb.core.mapping.Document;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "bookings")
 public class Booking {
     @Id
     private String id;
-    private LocalDate date;
-    private LocalTime time;
-    private String packageType;
-    private String style;
+
+    private LocalDate date; // This can include both date and time
+    private String time;
+    private String packageType; // For the package
+    private String style; // For the style
+    private int status;
+    private double price;
+
 
     public Booking() {}
 
     // Constructors
-    public Booking(String id, LocalDate date, LocalTime time, String packageType, String style) {
-        this.id = id;
+
+    public Booking(String id, LocalDate date, String time, String packageType, String style, int status, double price) {
+        this.id=id;
+
         this.date = date;
         this.time = time;
         this.packageType = packageType;
         this.style = style;
+        this.status = status;
+        this.price = price;
     }
 
     // Getters and Setters
@@ -37,18 +42,36 @@ public class Booking {
     public void setId(String id) {
         this.id = id;
     }
+    public double getPrice(){
+        return price;
+    }
+    public void setPrice(double price){
+        this.price = price;
+    }
     public LocalDate getDate() {
         return date;
     }
     public void setDate(LocalDate date) {
         this.date = date;
     }
-    public LocalTime getTime() {
-        return time;
+
+   
+    public void setStatus(int status) {
+        this.status = status;
     }
-    public void setTime(LocalTime time) {
+    public int getStatus() {
+        return status;
+    }
+
+    public void setTime(String time) {
         this.time = time;
     }
+
+    public String getTime() {
+        return time;
+    }
+
+
     public String getPackageType() {
         return packageType;
     }
@@ -66,17 +89,6 @@ public class Booking {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return date.format(dateFormatter);
     }
-    public String getFormattedTime() {
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        return time.format(timeFormatter);
-    }
 
-    // Method to create a map of id and formattedDate
-    // public static Map<String, String> createIdDateMap(List<Booking> bookings) {
-    //     Map<String, String> idDateMap = new HashMap<>();
-    //     for (Booking booking : bookings) {
-    //         idDateMap.put(booking.getId(), booking.getFormattedDate());
-    //     }
-    //     return idDateMap;
     // }
 }

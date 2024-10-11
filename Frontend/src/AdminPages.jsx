@@ -41,9 +41,9 @@ const AdminPages = () => (
       <Route
         path="/dashboard-admin"
         element={
-          <HodViewsLayout>
+          //<HodViewsLayout>
             <DashboardAdmin />
-          </HodViewsLayout>
+          //</HodViewsLayout>
         }
       />
       <Route

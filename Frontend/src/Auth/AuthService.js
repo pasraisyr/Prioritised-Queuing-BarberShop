@@ -72,19 +72,51 @@ const AuthService = {
       }
     },
 
-    async bookings(date, time,packageType, style) {
-      //  const username = await localStorage.getItem('username');
+    async bookings(style, packageType, totalPrice, date, time, status) {
+      try {
+        const formData = new FormData();
+        formData.append('date', date);
+        formData.append('time', time);
+        formData.append('price', totalPrice);
+        formData.append('status', status);
+        formData.append('packageType', packageType);
+        formData.append('style', style);
     
+        const response = await axios.post(
+          `${API_BASE_URL}/bookings`,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              "Accept": "*/*"
+            },
+          }
+        );
+    
+        if (response.status === 200) {
+          localStorage.setItem('bookingId', response.data.id);
+          return true; // Return true if booking is successful
+        } else {
+          return false; // Return false if booking is not successful
+        }
+      } catch (error) {
+        if (error.response) {
+          console.error('Server responded with an error:', error.response.data);
+        } else if (error.request) {
+          console.error('No response received:', error.request);
+        } else {
+          console.error('Error setting up the request:', error.message);
+        }
+        throw error;
+      }
+    },
+    
+
+      async requestPasswordReset(username) {
         try {
-          const formData = new FormData();
-          formData.append('date', date);
-          formData.append('time', time);
-          formData.append('packageType', packageType);
-          formData.append('style', style);
-    
           const response = await axios.post(
-            `${API_BASE_URL}/bookings`,
-            formData,
+            `${API_BASE_URL}/users/forgot-password`,
+            { username},
             {
               headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +124,7 @@ const AuthService = {
               },
             }
           );
-    
+      
           if (response.status === 200) {
             return response.data;
           }
@@ -107,6 +139,35 @@ const AuthService = {
           throw error;
         }
       },
+      
+      async resetPassword(token, password) {
+        try {
+          const response = await axios.post(
+            `${API_BASE_URL}/users/reset-password`,
+            { token, password },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                "Accept": "*/*"
+              },
+            }
+          );
+      
+          if (response.status === 200) {
+            return response.data;
+          }
+        } catch (error) {
+          if (error.response) {
+            console.error('Server responded with an error:', error.response.data);
+          } else if (error.request) {
+            console.error('No response received:', error.request);
+          } else {
+            console.error('Error setting up the request:', error.message);
+          }
+          throw error;
+        }
+      }
+      
   
 
 

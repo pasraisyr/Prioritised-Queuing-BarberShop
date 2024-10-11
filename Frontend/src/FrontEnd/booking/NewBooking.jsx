@@ -1,38 +1,11 @@
 import React, { useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { Button, TextField, Grid, Box, Typography, Paper, MenuItem, Card, CardContent, CardActions } from '@mui/material';
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import MenuItem from '@mui/material/MenuItem';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import dayjs from 'dayjs';
+import Link from '@mui/material/Link';
 import AuthService from '../../Auth/AuthService';
-import ContentCutIcon from '@mui/icons-material/ContentCut';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-const defaultTheme = createTheme();
 
 const packages = [
   { label: 'Basic Haircut', value: 'basic', price: 20 },
@@ -41,18 +14,26 @@ const packages = [
 ];
 
 const styles = [
-  { label: 'Buzz Cut', value: 'buzz' },
-  { label: 'Pompadour', value: 'pompadour' },
-  { label: 'Undercut', value: 'undercut' },
-  { label: 'Fade', value: 'fade' },
+  { label: 'Buzz Cut', value: 'buzz', price: 10 },
+  { label: 'Pompadour', value: 'pompadour', price: 15 },
+  { label: 'Undercut', value: 'undercut', price: 20 },
+  { label: 'Fade', value: 'fade', price: 25 },
 ];
 
-export default function NewBooking() {
+const timeSlots = [];
+for (let hour = 10; hour <= 21; hour++) {
+  timeSlots.push({ time: `${hour}:00`, available: true });
+  timeSlots.push({ time: `${hour}:30`, available: true });
+}
+timeSlots.push({ time: '22:00', available: true });
+
+const Booking = () => {
   const [date, setDate] = useState(dayjs());
-  const [time, setTime] = useState(dayjs());
+  const [time, setTime] = useState('');
   const [packageType, setPackageType] = useState('');
   const [style, setStyle] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
+  const status = 0;
   const navigate = useNavigate();
 
   const handlePackageChange = (event) => {
@@ -62,74 +43,95 @@ export default function NewBooking() {
   };
 
   const handleStyleChange = (event) => {
+    const selectedStyle = styles.find(sty => sty.value === event.target.value);
     setStyle(event.target.value);
+    setTotalPrice((prevPrice) => selectedStyle ? prevPrice + selectedStyle.price : prevPrice);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const newBooking = {
-      date: date.format('YYYY-MM-DD'),
-      time: time.format('HH:mm:ss'),
-      packageType,
-      style,
-      totalPrice,
-    };
-    try {
-      await AuthService.bookings(newBooking);
-      alert("Booking successful!");
-      navigate("/"); // Navigate to home or another page after booking
-    } catch (error) {
-      console.error("Booking error:", error);
-      alert("An error occurred during booking.");
-    }
+  const handleTimeChange = (event) => {
+    setTime(event.target.value);
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent default form submission
+    const formattedDate = date.format('YYYY-MM-DD');
+    const bookingDetails = {
+      style,
+      packageType,
+      totalPrice,
+      formattedDate,
+      time,
+      status,
+    };
+    navigate('/payment', { state: { bookingDetails } }); // Pass booking details to payment page
+  };
+  
+  
 
   return (
-    
-      <Grid container component="main" sx={{ height: '100vh' }}>
-       
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey : t.palette.grey,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <ContentCutIcon />
-            </Avatar> */}
-            <Typography component="h1" variant="h5" margin = "30px">
+    <Grid container component="main" sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Grid
+        item
+        xs={false}
+        sm={5}
+        md={15}
+        sx={{
+          backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: (t) =>
+            t.palette.mode === 'light' ? t.palette.grey : t.palette.grey,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <Grid 
+        item 
+        xs={12} 
+        sm={8} 
+        md={5} 
+        component={Paper} 
+        elevation={6} 
+        square 
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%', // Ensure the Grid item takes full height
+        }}
+      >
+        <Card sx={{ minWidth: 275, padding: 2 }}>
+          <CardContent>
+            <Typography component="h1" variant="h5" margin="30px" textAlign="center">
               New Booking
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DateTimePicker
-                  label="Choose Date & Time"
+                <DatePicker
+                  label="Choose Date"
                   value={date}
                   onChange={(newValue) => {
                     setDate(newValue);
-                    setTime(newValue);
                   }}
                   renderInput={(params) => <TextField {...params} fullWidth />}
                 />
               </LocalizationProvider>
+              <TextField
+                select
+                margin="normal"
+                required
+                fullWidth
+                id="time"
+                label="Choose Time"
+                name="time"
+                value={time}
+                onChange={handleTimeChange}
+              >
+                {timeSlots.map((slot) => (
+                  <MenuItem key={slot.time} value={slot.time} disabled={!slot.available}>
+                    {slot.time} {slot.available ? '' : '(Unavailable)'}
+                  </MenuItem>
+                ))}
+              </TextField>
               <TextField
                 select
                 margin="normal"
@@ -160,21 +162,23 @@ export default function NewBooking() {
               >
                 {styles.map((style) => (
                   <MenuItem key={style.value} value={style.value}>
-                    {style.label}
+                    {style.label} - ${style.price}
                   </MenuItem>
                 ))}
               </TextField>
               <Typography variant="h6" style={{ marginTop: '20px' }}>
-                            Total Price: ${totalPrice}
-                        </Typography>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Proceed Booking
-              </Button>
+                Total Price: ${totalPrice}
+              </Typography>
+              <CardActions>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Proceed Booking
+                </Button>
+              </CardActions>
               <Grid container>
                 <Grid item>
                   <Link component={RouterLink} to="/" variant="body2">
@@ -182,11 +186,12 @@ export default function NewBooking() {
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
-          </Box>
-        </Grid>
+          </CardContent>
+        </Card>
       </Grid>
-  
+    </Grid>
   );
 }
+
+export default Booking;
