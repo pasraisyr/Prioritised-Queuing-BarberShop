@@ -1,17 +1,17 @@
 package com.ccsd.Shop.booking;
 
-//import java.time.LocalDateTime;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @Document(collection = "bookings")
 public class Booking {
     @Id
     private String id;
+
     private LocalDate date; // This can include both date and time
     private String time;
     private String packageType; // For the package
@@ -19,11 +19,14 @@ public class Booking {
     private int status;
     private double price;
 
-    public Booking (){}
+
+    public Booking() {}
 
     // Constructors
+
     public Booking(String id, LocalDate date, String time, String packageType, String style, int status, double price) {
         this.id=id;
+
         this.date = date;
         this.time = time;
         this.packageType = packageType;
@@ -31,17 +34,12 @@ public class Booking {
         this.status = status;
         this.price = price;
     }
-    // @JsonFormat(pattern = "dd-MM-yyyy")
-    // private LocalDate date;
-
-    // @JsonFormat(pattern = "HH:mm:ss")
-    // private LocalTime time;
 
     // Getters and Setters
-    public String getId(){
+    public String getId() {
         return id;
     }
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
     public double getPrice(){
@@ -53,7 +51,6 @@ public class Booking {
     public LocalDate getDate() {
         return date;
     }
-
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -74,27 +71,24 @@ public class Booking {
         return time;
     }
 
+
     public String getPackageType() {
         return packageType;
     }
-
     public void setPackageType(String packageType) {
         this.packageType = packageType;
     }
-
     public String getStyle() {
         return style;
     }
-
     public void setStyle(String style) {
         this.style = style;
     }
+
     public String getFormattedDate() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return date.format(dateFormatter);
     }
-    // public String getFormattedTime() {
-    //     DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-    //     return time.format(timeFormatter);
+
     // }
 }
