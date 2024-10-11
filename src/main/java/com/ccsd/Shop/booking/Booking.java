@@ -3,7 +3,7 @@ package com.ccsd.Shop.booking;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
