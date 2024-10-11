@@ -30,6 +30,11 @@ public class BookingController {
         return bookingService.getBookingById(id).map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
     }
+    @GetMapping("/{date}")
+    public ResponseEntity<Booking> getBookingbyDate(@PathVariable String dateFormatter) {
+        return bookingService.getBookingbyDate(dateFormatter).map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+    }
 
     @PostMapping
     public Booking addBooking(@RequestBody Booking booking) {
