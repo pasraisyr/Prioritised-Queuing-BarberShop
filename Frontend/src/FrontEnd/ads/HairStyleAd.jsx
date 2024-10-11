@@ -1,12 +1,10 @@
-
 import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Typography, Box, Container } from '@mui/material';
+import { Typography, Box, Container, Button } from '@mui/material';
 import { fade, manBun, pompadour, undercut, buzzCut } from "../../assets/images";
 
-//JAP
 // Array of hair styles with name, image, and description
 const hairStyles = [
   {
@@ -64,7 +62,8 @@ const NextArrow = (props) => {
   );
 };
 
-const HairStyleAd = () => {
+const HairStyleAd = ({ userRole = 'admin' }) => {
+//const HairStyleAd = ({ userRole }) => { // bila dh settle uncomment this and comment line untuk admin tu
   const settings = {
     dots: true, // Enable dots navigation
     infinite: true,
@@ -116,9 +115,17 @@ const HairStyleAd = () => {
           </Box>
         ))}
       </Slider>
+      {userRole === 'admin' && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => window.location.href = '/dashboard-customer'}
+        >
+          Back
+        </Button>
+      )}
     </Container>
   );
 };
 
 export default HairStyleAd;
-
