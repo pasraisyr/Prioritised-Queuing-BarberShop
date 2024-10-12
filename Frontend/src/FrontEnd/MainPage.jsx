@@ -33,7 +33,7 @@ const MainPage = ({ isAuthenticated }) => {
 
 
 
-      <Box width="80%" maxWidth="700px" mx="auto" sx={{ boxShadow: '0 8px 8px rgba(0, 0, 0, 20)'}}>
+      <Box width="80%" maxWidth="700px" mx="auto" sx={{ boxShadow: '0 8px 8px rgba(0, 0, 0, 20)', mt: 10}}>
         <ImgSlider />
       </Box>
 
