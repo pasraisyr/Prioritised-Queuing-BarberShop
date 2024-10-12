@@ -25,7 +25,7 @@ function Copyright(props) {
 export default function SignInSide() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedInAdmin, setIsLoggedInAdmin] = useState(false);
+  const [setIsLoggedInAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -131,7 +131,7 @@ export default function SignInSide() {
               </CardActions>
               <Grid container>
                 <Grid item xs>
-                  <Link component={RouterLink} to="/forgot-password" variant="body2">
+                  <Link component={RouterLink} to="/update-user" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>

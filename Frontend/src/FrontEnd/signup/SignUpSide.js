@@ -54,7 +54,7 @@ export default function SignUpSide() {
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("An error occurred during registration.");
+      alert("Username already taken. Please choose a different username.");
     }
   };
 

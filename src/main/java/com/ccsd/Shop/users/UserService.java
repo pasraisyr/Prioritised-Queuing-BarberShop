@@ -1,9 +1,10 @@
 package com.ccsd.Shop.users;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
@@ -22,31 +23,31 @@ public class UserService {
     }
 
     // Adding a new user
-    public User addUser(User user) {
-        return userRepository.save(user);
-    }
-
-    public User registerUser(User user) {
+    public User register(User user) {
         // Check if the username already exists
         if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new RuntimeException("Username already taken");
         }
-
         return userRepository.save(user);
     }
 
+    
+ 
+
     // Updating a user
-    public User updateUser(String id, User userDetails) {
-        Optional<User> userOpt = userRepository.findById(id);
-        if (userOpt.isPresent()) {
-            User user = userOpt.get();
+    public User updateUserByUsername(String username, User userDetails) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
             user.setUsername(userDetails.getUsername());
             user.setPassword(userDetails.getPassword());
-            user.setPhonenumber(userDetails.getPhonenumber());
+            user.setPhoneNumber(userDetails.getPhoneNumber());
+            user.setName(userDetails.getName());
+            user.setRole(userDetails.getRole());
             return userRepository.save(user);
         }
         return null;
     }
+
 
     // Deleting a user
     public void deleteUser(String id) {
