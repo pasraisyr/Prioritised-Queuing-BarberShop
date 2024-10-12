@@ -1,48 +1,55 @@
-.edit-style-page {
+.edit-page {
   padding: 20px;
 }
 
-.edit-style-page h1 {
+.edit-page h1 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  font-size: 3rem;
 }
 
-table {
+
+.edit-page table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-table, th, td {
+.edit-page table, .edit-page th, .edit-page td {
   border: 1px solid #ddd;
 }
 
-th, td {
+.edit-page th, .edit-page td {
   padding: 8px;
   text-align: left;
 }
 
-th {
+.edit-page th {
   background-color: #f2f2f2;
 }
 
-img {
+.edit-page img {
   max-width: 100px;
   height: auto;
 }
 
-input[type="text"] {
+.edit-page input[type="text"] {
   width: 100%;
   padding: 5px;
   box-sizing: border-box;
 }
 
-button {
+.edit-page button {
   padding: 5px 10px;
   margin: 2px;
   cursor: pointer;
 }
 
-button:hover {
+.edit-page button:hover {
   background-color: #ddd;
+}
+
+.custom-input {
+  background-color: #E0D7C7;
+  color: #211C1D;
 }

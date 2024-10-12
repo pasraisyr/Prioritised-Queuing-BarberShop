@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class BookingService {
     
@@ -20,6 +21,10 @@ public class BookingService {
     public Optional<Booking> getBookingById(String id) {
         return bookingRepository.findById(id);
     }
+    public Optional<Booking> getBookingbyDate(String dateFormatter) {
+        return bookingRepository.findByDate(dateFormatter);
+    }
+
 
     // Adding a new user
     public Booking addBooking(Booking booking) {

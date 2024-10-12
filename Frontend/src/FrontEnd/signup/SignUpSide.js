@@ -10,8 +10,10 @@ import Typography from '@mui/material/Typography';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-//import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem'; // For the role dropdown
+import Card from '@mui/material/Card'; // Import Card
+import CardContent from '@mui/material/CardContent'; // Import CardContent
+import CardActions from '@mui/material/CardActions'; // Import CardActions
 import AuthService from '../../Auth/AuthService'; // Adjust the path to your AuthService file
 import { useNavigate, Link as RouterLink } from 'react-router-dom'; // Import RouterLink
 
@@ -52,43 +54,48 @@ export default function SignUpSide() {
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("An error occurred during registration.");
+      alert("Username already taken. Please choose a different username.");
     }
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+    <Grid container component="main" sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <CssBaseline />
+      <Grid
+        item
+        xs={false}
+        sm={5}
+        md={15}
+        sx={{
+          backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: (t) =>
+            t.palette.mode === 'light' ? t.palette.grey : t.palette.grey,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <Grid 
+        item 
+        xs={12} 
+        sm={8} 
+        md={5} 
+        component={Paper} 
+        elevation={6} 
+        square 
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%', // Ensure the Grid item takes full height
+        }}
+      >
+        <Card sx={{ minWidth: 275, padding: 2 }}>
+          <CardContent>
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} className="mx-auto">
               <LockOutlinedIcon />
             </Avatar>
-            <h1 className="text-3xl font-bold underline" > Hello </h1>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" margin="30px" textAlign="center">
               Sign Up
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -148,30 +155,31 @@ export default function SignUpSide() {
                 name="role"
                 helperText="Please select your role"
               >
-      
                 <MenuItem value="Staff">Staff</MenuItem>
                 <MenuItem value="Customer">Customer</MenuItem>
               </TextField>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign Up
-              </Button>
+              <CardActions>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign Up
+                </Button>
+              </CardActions>
               <Grid container>
                 <Grid item>
-                <Link component={RouterLink} to="/signin" variant="body2">
+                  <Link component={RouterLink} to="/signin" variant="body2">
                     {"Already have an account? Sign In"}
                   </Link>
                 </Grid>
               </Grid>
               <Copyright sx={{ mt: 5 }} />
             </Box>
-          </Box>
-        </Grid>
+          </CardContent>
+        </Card>
       </Grid>
-    </ThemeProvider>
+    </Grid>
   );
 }
