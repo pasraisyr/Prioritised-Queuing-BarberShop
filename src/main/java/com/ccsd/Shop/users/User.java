@@ -24,8 +24,6 @@ public class User{
         this.role = role;
         this.name = name;
 
-
-
     }
 
     public void setId(String id) {
@@ -79,4 +77,3 @@ public class User{
         return name;
     }
 }
-
