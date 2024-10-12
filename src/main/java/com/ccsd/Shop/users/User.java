@@ -55,11 +55,11 @@ public class User{
     //boolean isEqual = (str1 == str2); // true
     //boolean isEqual = str1.equals(str2); // true
 
-    public void setPhonenumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPhonenumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { ColorModeContext, useMode } from "./base/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import BasicTopbar from "./HodViews/scense/global/BasicTopbar";
@@ -15,10 +16,6 @@ import PaymentPage from "./FrontEnd/booking/PaymentPage";
 import DashboardCustomer from "./CustomersViews/scense/dashboard";
 import DashboardStaff from "./StaffViews/scense/dashboard";
 import QueueDisplay from './FrontEnd/booking/QueueDisplay';
-import ForgotPassword from "./FrontEnd/login/ForgotPassword";
-import ResetPassword from "./FrontEnd/login/ResetPassword";
-
-
 
 
   const HodViewsLayout = ({ children, showTopbar = true }) => {
@@ -39,36 +36,6 @@ import ResetPassword from "./FrontEnd/login/ResetPassword";
   };
   
 
-//   return (
-//     <ColorModeContext.Provider value={colorMode}>
-//       <ThemeProvider theme={theme}>
-//         <CssBaseline />
-//           <main className="content">
-//             <BasicTopbar />
-//             {children}
-//           </main>
-//       </ThemeProvider>
-//     </ColorModeContext.Provider>
-//   );
-// };
-
-
-
-// const SignInlayout = ({ children }) => {
-//   const [theme, colorMode] = useMode();
-
-//   return (
-//     <ColorModeContext.Provider value={colorMode}>
-//       <ThemeProvider theme={theme}>
-//         <CssBaseline />
-//           {/* <main className="content">
-//             <BasicTopbar />
-//             {children}
-//           </main> */}
-//       </ThemeProvider>
-//     </ColorModeContext.Provider>
-//   );
-// };
 
 
 function App() {
@@ -117,6 +84,7 @@ function App() {
           </HodViewsLayout>
         }
     />
+    
     <Route
         path="/hair-style" element={
           <HodViewsLayout >
@@ -157,11 +125,13 @@ function App() {
           </HodViewsLayout>
         }
     />
+   
 
     <Route path="/hair-style" element={<HairStyleAd />} />
     <Route path="/package-style" element={<PackageAd/>} />
-    <Route path="/forgot-password" element={<ForgotPassword />} />
-    <Route path="/reset-password" element={<ResetPassword />} />
+   
+  
+    
 
 
     </Routes>
