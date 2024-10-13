@@ -3,9 +3,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
-import { Box, Grid} from "@mui/material";
+import { Box, Grid, Button} from "@mui/material";
 import Header from "../../../components/Header";
 import { Link } from 'react-router-dom';
+
 
 
 export default function DashboardCustomer() {
@@ -13,6 +14,15 @@ export default function DashboardCustomer() {
     <Box m="20px">
   <Box component="center"> 
     <Header title="Welcome to AR BarberShop"></Header>
+    <Button
+      component={Link}           
+      to="/"         
+      variant="contained"        
+      color="primary"             
+      style={{ textDecoration: 'none', color: 'inherit', marginBlockEnd: '50px'}}
+    >
+      View Queue
+    </Button>
   </Box>
   <Grid container spacing={2} justifyContent="center">
     <Grid item>
