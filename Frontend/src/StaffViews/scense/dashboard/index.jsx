@@ -4,9 +4,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
-import { Grid } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 import Header from "../../../components/Header";
 import { Link } from 'react-router-dom';
+
 
 
 
@@ -15,8 +16,16 @@ import { Link } from 'react-router-dom';
     export default function DashboardStaff() {
     return ( <Box m="20px">
     <Box component="center"> 
-      <Header title="Welcome to AR BarberShop Staff Dashboard"></Header>
-      <Header title="Current Queue"></Header>
+      <Header title="Welcome to AR BarberShop"></Header>
+      <Button
+      component={Link}           
+      to="/queue-display"         
+      variant="contained"        
+      color="primary"             
+      style={{ textDecoration: 'none', color: 'inherit', marginBlockEnd: '50px'}}
+    >
+      View Queue
+    </Button>
     </Box>
     <Grid container spacing={2} justifyContent="center">
       <Grid item>
@@ -54,6 +63,7 @@ import { Link } from 'react-router-dom';
           </Link>
         </Card>
       </Grid>
+      
   
       {/* <Grid item>
         <Card sx={{ maxWidth: 400 }}>
