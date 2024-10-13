@@ -7,6 +7,7 @@ import AdminPages from "./AdminPages";
 import SignInSide from "./FrontEnd/login/SignInSide";
 import SignUpSide from "./FrontEnd/signup/SignUpSide";
 import UpdateUserForm from "./FrontEnd/signup/UpdateUserForm";
+import UpdatePassword from "./FrontEnd/signup/UpdatePassword";
 import StaffPages from "./StaffPages";
 import CustomerPages from "./CustomerPages";
 import MainPage from "./FrontEnd/MainPage";
@@ -114,16 +115,16 @@ function App() {
           <HodViewsLayout >
           <QueueDisplay />
           </HodViewsLayout>
-        }
-    />
+        }
+        />
 
        <Route
         path="/payment" element={
           <HodViewsLayout showTopbar={false}>
           <PaymentPage />
           </HodViewsLayout>
-        }
-    />
+          }
+          />
     
 
 
@@ -146,6 +147,14 @@ function App() {
        path="/update-user" element={
           <HodViewsLayout> 
           <UpdateUserForm/>
+          </HodViewsLayout> 
+          }
+       />
+
+<Route 
+       path="/update-password" element={
+          <HodViewsLayout> 
+          <UpdatePassword/>
           </HodViewsLayout> 
           }
        />

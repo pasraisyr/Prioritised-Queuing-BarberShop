@@ -8,9 +8,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import MenuItem from '@mui/material/MenuItem';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
@@ -30,15 +28,12 @@ function Copyright(props) {
   );
 }
 
-const defaultTheme = createTheme();
 
-export default function UpdateUserForm() {
+
+export default function UpdatePassword() {
   const API_BASE_URL = 'http://localhost:8082/api';
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [role, setRole] = useState("");
-  const [name, setName] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -47,7 +42,7 @@ export default function UpdateUserForm() {
     try {
       const response = await axios.put(
         `${API_BASE_URL}/users/${username}`,
-        { username, password, phoneNumber, role, name },
+        { username, password},
         {
           headers: {
             'Content-Type': 'application/json',
@@ -69,7 +64,7 @@ export default function UpdateUserForm() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+  
       <Grid container component="main" sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <CssBaseline />
         <Grid
@@ -110,16 +105,7 @@ export default function UpdateUserForm() {
                 Update User
               </Typography>
               <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                <TextField
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="name"
-                  label="Full Name"
-                  name="name"
-                />
+                
                 <TextField
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -143,32 +129,6 @@ export default function UpdateUserForm() {
                   id="password"
                   autoComplete="current-password"
                 />
-                <TextField
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="phoneNumber"
-                  label="Phone Number"
-                  name="phoneNumber"
-                  autoComplete="tel"
-                />
-                <TextField
-                  select
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="role"
-                  label="Role"
-                  name="role"
-                  helperText="Please select your role"
-                >
-                  <MenuItem value="Staff">Staff</MenuItem>
-                  <MenuItem value="Customer">Customer</MenuItem>
-                </TextField>
                 <CardActions>
                   <Button
                     type="submit"
@@ -192,6 +152,6 @@ export default function UpdateUserForm() {
           </Card>
         </Grid>
       </Grid>
-    </ThemeProvider>
+
   );
 }

@@ -48,6 +48,17 @@ public class UserService {
         return null;
     }
 
+     // Updating a user
+     public User updatePasswordByUsername(String username, User userDetails) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            user.setUsername(userDetails.getUsername());
+            user.setPassword(userDetails.getPassword());
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
 
     // Deleting a user
     public void deleteUser(String id) {

@@ -25,7 +25,6 @@ function Copyright(props) {
 export default function SignInSide() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [setIsLoggedInAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,7 +36,6 @@ export default function SignInSide() {
       const role = await localStorage.getItem('role');
 
       if (success && role === "Admin") {
-        setIsLoggedInAdmin(true);
         navigate("/dashboard-admin");
       } else if (success && role === "Staff") {
         navigate("/dashboard-staff");
