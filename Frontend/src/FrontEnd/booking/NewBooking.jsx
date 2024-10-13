@@ -5,7 +5,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import dayjs from 'dayjs';
 import Link from '@mui/material/Link';
-import AuthService from '../../Auth/AuthService';
 
 const packages = [
   { label: 'Basic Haircut', value: 'basic', price: 20 },
@@ -33,6 +32,7 @@ const Booking = () => {
   const [packageType, setPackageType] = useState('');
   const [style, setStyle] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
+  const [username, setUsername] = useState('');
   const status = 0;
   const navigate = useNavigate();
 
@@ -52,6 +52,11 @@ const Booking = () => {
     setTime(event.target.value);
   };
 
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+    console.log("Username updated:", event.target.value); // Debugging: Check if username is updated
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission
     const formattedDate = date.format('YYYY-MM-DD');
@@ -62,11 +67,11 @@ const Booking = () => {
       formattedDate,
       time,
       status,
+      username,
     };
+    console.log("Booking details:", bookingDetails); // Debugging: Check if username is present
     navigate('/payment', { state: { bookingDetails } }); // Pass booking details to payment page
   };
-  
-  
 
   return (
     <Grid container component="main" sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -115,6 +120,16 @@ const Booking = () => {
                   renderInput={(params) => <TextField {...params} fullWidth />}
                 />
               </LocalizationProvider>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Your Username"
+                name="username"
+                value={username}
+                onChange={handleUsernameChange}
+              />
               <TextField
                 select
                 margin="normal"

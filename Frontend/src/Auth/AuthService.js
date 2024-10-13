@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const API_BASE_URL = 'http://localhost:8082/api';
 
 
@@ -104,9 +105,41 @@ const AuthService = {
     }
   },
   
+  async UpdatePassword(username, password) {
+    try {
+      const formData = new FormData();
+      formData.append('username', username);
+      formData.append('password', password);
+     
+  
+      const response = await axios.put(
+        `${API_BASE_URL}/users/${username}`, // Ensure this is the correct endpoint
+        formData,
+        {
+          headers: {
+           'Content-Type': 'application/json',
+            "Accept": "*/*"
+          },
+        }
+      );
+  
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error('Server responded with an error:', error.response.data);
+      } else if (error.request) {
+        console.error('No response received:', error.request);
+      } else {
+        console.error('Error setting up the request:', error.message);
+      }
+      throw error;
+    }
+  },
   
 
-  async bookings(style, packageType, totalPrice, date, time, status) {
+  async bookings(style, packageType, totalPrice, date, time, status,username) {
     try {
       const formData = new FormData();
       formData.append('date', date);
@@ -115,6 +148,7 @@ const AuthService = {
       formData.append('status', status);
       formData.append('packageType', packageType);
       formData.append('style', style);
+      formData.append('username', username);
 
       const response = await axios.post(
         `${API_BASE_URL}/bookings`, // Corrected with backticks
