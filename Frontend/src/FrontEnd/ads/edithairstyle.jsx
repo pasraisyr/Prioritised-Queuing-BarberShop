@@ -103,7 +103,7 @@ const EditHairStyle= () => {
     <div className="edit-page">
         <h1 className="pageTitle">HAIRSTYLES</h1>
       <table className="hairStyleTable">
-        <thead>
+      <thead>
           <tr>
             <th>Name</th>
             <th>Image</th>
