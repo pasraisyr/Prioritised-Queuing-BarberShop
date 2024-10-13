@@ -31,6 +31,38 @@ const AuthService = {
     }
   },
 
+  async getProfile() {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/users/profile`, {
+        withCredentials: true,  // Ensure session cookie is included
+      });
+
+      if (response.status === 200) {
+        return response.data;  // Return user profile and role
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+      return null;
+    }
+  },
+
+  // Logout method to invalidate the session
+  async logout() {
+    try {
+      await axios.post(`${API_BASE_URL}/users/logout`, {}, {
+        withCredentials: true,  // Ensure session cookie is sent
+      });
+
+      localStorage.removeItem('username');
+      localStorage.removeItem('role');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  },
+
+
   async register(username, password, phoneNumber, role, name) {
     try {
       const formData = new FormData();
