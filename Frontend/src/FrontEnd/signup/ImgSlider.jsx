@@ -24,13 +24,15 @@ const images = [
     };
   
     return (
+      <div style={{ backgroundColor: '#E0D7C7', padding: '3px', borderRadius: '10px', boxShadow: '0 8px 8px rgba(0, 0, 0, 0.2)'}}>
       <Slider {...settings}>
         {images.map((image, index) => (
-          <div key={index}>
+          <div  key={index}>
             <img src={image} alt={`Slide ${index + 1}`} style={{ width: '100%' }} />
           </div>
         ))}
       </Slider>
+      </div>
     );
   };
 
