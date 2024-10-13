@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface BookingRepository extends MongoRepository<Booking, String> {
     Optional<Booking> findByDate(String dateFormatter);
     Optional<Booking> findByTime(String timeFormatter);
+    Booking findByUsername(String username);
 }

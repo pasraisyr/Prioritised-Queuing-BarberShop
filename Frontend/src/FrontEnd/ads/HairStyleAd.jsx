@@ -1,40 +1,8 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Typography, Box, Container } from '@mui/material';
-import { fade, manBun, pompadour, undercut, buzzCut } from "../../assets/images";
-
-//JAP
-// Array of hair styles with name, image, and description
-const hairStyles = [
-  {
-    name: "Classic Pompadour",
-    image: pompadour,
-    description: "A timeless style with volume and slicked-back elegance, perfect for formal occasions."
-  },
-  {
-    name: "Buzz Cut",
-    image: buzzCut,
-    description: "A low-maintenance, sharp cut that emphasizes facial features. Ideal for an easy-going, clean look."
-  },
-  {
-    name: "Undercut",
-    image: undercut,
-    description: "A trendy, modern style with short sides and longer top, offering a bold contrast."
-  },
-  {
-    name: "Fade",
-    image: fade,
-    description: "Smoothly tapered from the sides to the skin, this haircut is great for a fresh, modern vibe."
-  },
-  {
-    name: "Man Bun",
-    image: manBun,
-    description: "A longer style where hair is pulled into a bun. It offers a relaxed yet stylish appearance."
-  },
-];
+import { Typography, Box, Container, Button } from '@mui/material';
 
 // Custom Left Arrow
 const PrevArrow = (props) => {
@@ -42,7 +10,7 @@ const PrevArrow = (props) => {
   return (
     <div
       className={className}
-      style={{ ...style, display: 'block', color: 'black', fontSize: '2rem' }}
+      style={{ ...style, display: 'block', color: 'black', fontSize: '2rem', zIndex: 1 }}
       onClick={onClick}
     >
       ←
@@ -56,7 +24,7 @@ const NextArrow = (props) => {
   return (
     <div
       className={className}
-      style={{ ...style, display: 'block', color: 'black', fontSize: '2rem' }}
+      style={{ ...style, display: 'block', color: 'black', fontSize: '2rem', zIndex: 1 }}
       onClick={onClick}
     >
       →
@@ -65,6 +33,19 @@ const NextArrow = (props) => {
 };
 
 const HairStyleAd = () => {
+  const [hairStyles, setHairStyles] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8082/api/hairstyles')
+      .then(response => response.json())
+      .then(data => {
+        setHairStyles(data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the hairstyles!', error);
+      });
+  }, []);
+
   const settings = {
     dots: true, // Enable dots navigation
     infinite: true,
@@ -96,7 +77,7 @@ const HairStyleAd = () => {
           <Box key={index} sx={{ marginBottom: '3rem', textAlign: 'center' }}>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <img
-                src={style.image}
+                src={style.imageUrl} // Assuming your API returns imageUrl
                 alt={style.name}
                 style={{
                   width: '300px',  // Set a fixed width
@@ -116,9 +97,16 @@ const HairStyleAd = () => {
           </Box>
         ))}
       </Slider>
+      <Button
+        variant="contained"
+        color="primary"
+        sx={{ position: 'absolute', right: '10px', bottom: '10px' }}
+        onClick={() => window.location.href = '/dashboard-customer'}
+      >
+        Back
+      </Button>
     </Container>
   );
 };
 
 export default HairStyleAd;
-

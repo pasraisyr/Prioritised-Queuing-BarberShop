@@ -31,15 +31,13 @@ public class BookingController {
             .orElse(ResponseEntity.notFound().build());
     }
 
+
     @PostMapping
-    public ResponseEntity<Booking> addBooking(@RequestBody Booking booking) {
-        Booking addBooking = bookingService.addBooking(booking);
-    if (addBooking != null){
-            return ResponseEntity.ok(booking);
-    } else {
-        return ResponseEntity.ok(booking);
+    public Booking addBooking(@RequestBody Booking booking) {
+        System.out.println("Received booking: " + booking); // Debugging: Log the received booking
+        return bookingService.addBooking(booking);
     }
-    }
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<Booking> updateBooking(@PathVariable String id, @RequestBody Booking bookingDetails) {

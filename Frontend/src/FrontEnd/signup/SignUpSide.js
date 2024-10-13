@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import MenuItem from '@mui/material/MenuItem'; // For the role dropdown
 import Card from '@mui/material/Card'; // Import Card
@@ -30,7 +29,7 @@ function Copyright(props) {
   );
 }
 
-const defaultTheme = createTheme();
+
 
 export default function SignUpSide() {
   const [username, setUsername] = useState("");
@@ -54,7 +53,7 @@ export default function SignUpSide() {
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert("An error occurred during registration.");
+      alert("Username already taken. Please choose a different username.");
     }
   };
 

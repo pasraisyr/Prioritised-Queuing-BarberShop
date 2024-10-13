@@ -18,13 +18,14 @@ public class Booking {
     private String style; // For the style
     private int status;
     private double price;
+    private String username;
 
 
     public Booking() {}
 
     // Constructors
 
-    public Booking(String id, LocalDate date, String time, String packageType, String style, int status, double price) {
+    public Booking(String id, LocalDate date, String time, String packageType, String style, int status, double price,String username) {
         this.id=id;
 
         this.date = date;
@@ -33,6 +34,7 @@ public class Booking {
         this.style = style;
         this.status = status;
         this.price = price;
+        this.username = username;
     }
 
     // Getters and Setters
@@ -84,6 +86,14 @@ public class Booking {
     public void setStyle(String style) {
         this.style = style;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    } 
 
     public String getFormattedDate() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
