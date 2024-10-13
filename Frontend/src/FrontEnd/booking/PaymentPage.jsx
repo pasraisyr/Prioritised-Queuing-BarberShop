@@ -19,7 +19,8 @@ const PaymentPage = () => {
         bookingDetails.totalPrice,
         formattedDate,
         bookingDetails.time,
-        bookingDetails.status
+        bookingDetails.status,
+        bookingDetails.username,
       );
       console.log("Booking response:", success);
       if (success) {

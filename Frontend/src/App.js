@@ -2,7 +2,7 @@ import React from 'react';
 import { ColorModeContext, useMode } from "./base/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import BasicTopbar from "./HodViews/scense/global/BasicTopbar";
-import {  Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AdminPages from "./AdminPages";
 import SignInSide from "./FrontEnd/login/SignInSide";
 import SignUpSide from "./FrontEnd/signup/SignUpSide";
@@ -19,9 +19,6 @@ import EditHairStyle from "./FrontEnd/ads/edithairstyle";
 import EditPackageStyle from "./FrontEnd/ads/editpackagestyle";
 import DashboardStaff from "./StaffViews/scense/dashboard";
 import QueueDisplay from './FrontEnd/booking/QueueDisplay';
-
-import ForgotPassword from "./FrontEnd/login/ForgotPassword";
-import ResetPassword from "./FrontEnd/login/ResetPassword";
 import CustomerProfile from "./FrontEnd/CusProfile/CustomerProfile";
 import DashboardCustomer from "./CustomersViews/scense/dashboard";
 
@@ -80,8 +77,8 @@ function App() {
           <HodViewsLayout showTopbar={false}>
           <SignUpSide />
           </HodViewsLayout>
-        }
-     />
+}
+/>
       
      
       <Route
@@ -97,8 +94,8 @@ function App() {
           <HodViewsLayout >
           <DashboardCustomer />
           </HodViewsLayout>
-        }
-    />
+}
+/>
 
       <Route 
        path="/hair-style" element={
@@ -121,8 +118,8 @@ function App() {
           <HodViewsLayout >
           <DashboardStaff />
           </HodViewsLayout>
-        }
-    />
+}
+/>
 
       <Route
         path="/queue-display" element={

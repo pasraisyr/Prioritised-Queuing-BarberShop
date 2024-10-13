@@ -52,25 +52,22 @@ const Booking = () => {
     setTime(event.target.value);
   };
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-    console.log("Username updated:", event.target.value); // Debugging: Check if username is updated
-  };
+
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
     const formattedDate = date.format('YYYY-MM-DD');
     const bookingDetails = {
       style,
       packageType,
       totalPrice,
-      formattedDate,
+      date: formattedDate,
       time,
       status,
       username,
     };
     console.log("Booking details:", bookingDetails); // Debugging: Check if username is present
-    navigate('/payment', { state: { bookingDetails } }); // Pass booking details to payment page
+    navigate('/payment', { state: { bookingDetails } });
   };
 
   return (
@@ -121,14 +118,15 @@ const Booking = () => {
                 />
               </LocalizationProvider>
               <TextField
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 margin="normal"
                 required
                 fullWidth
                 id="username"
                 label="Your Username"
                 name="username"
-                value={username}
-                onChange={handleUsernameChange}
+                autoComplete="username"
               />
               <TextField
                 select

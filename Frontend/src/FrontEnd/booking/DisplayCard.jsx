@@ -11,8 +11,8 @@ function getDate() {
   const date = today.getDate();
   return `${date}-${month}-${year}`;
 }
-//const currentDate = getDate(); // Store current date
-const currentDate = "12-10-2024";
+const currentDate = getDate(); // Store current date
+// const currentDate = "12-10-2024";
 export const DisplayCard = () => {
   const [data, setData] = useState([]);
 
