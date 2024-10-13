@@ -18,7 +18,7 @@ const MainPage = ({ isAuthenticated }) => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="80vh" bgcolor={'secondary.main'}>
+    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center"  bgcolor={'secondary.main'}>
       <Box margin={{margin: 2}} width="80%" maxWidth="700px" mx="auto" maxHeight="150px" sx={{ boxShadow: '0 8px 8px rgba(0, 0, 0, 20)'}}>
           <div>
           <DisplayCard />
@@ -33,7 +33,7 @@ const MainPage = ({ isAuthenticated }) => {
 
 
 
-      <Box width="80%" maxWidth="700px" mx="auto" sx={{ boxShadow: '0 8px 8px rgba(0, 0, 0, 20)', mt: 10}}>
+      <Box width="80%" maxWidth="700px" mx="auto" sx={{ boxShadow: '0 8px 8px rgba(0, 0, 0, 20)'}}>
         <ImgSlider />
       </Box>
 

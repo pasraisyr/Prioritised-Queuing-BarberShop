@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// const BookingApi_URL = 'http://localhost:8082/api/bookings';
 
 function getDate() {
   const today = new Date();
@@ -12,8 +11,8 @@ function getDate() {
   const date = today.getDate();
   return `${date}-${month}-${year}`;
 }
-const currentDate = getDate(); // Store current date
-
+//const currentDate = getDate(); // Store current date
+const currentDate = "12-10-2024";
 export const DisplayCard = () => {
   const [data, setData] = useState([]);
 
@@ -42,19 +41,18 @@ export const DisplayCard = () => {
     }
   };
 
+  const sliderSettings = {
+    infinite: data.length > 1, // Set infinite to true only if there is more than one item
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+  };
+
   return (
-    <div style={{ width: '100%', margin: 'auto' }}>
-      <div style={{ marginTop: '20px' }}>
-        <Slider
-          settings={{
-            // dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            adaptiveHeight: true,
-          }}
-        >
+    <div style={{ width: '100%', margin: 'auto'}}>
+      <div style={{ marginTop: '2px', backgroundColor:'#E0D7C7' }}>
+        <Slider {...sliderSettings}>
           {data.map((d, index) => (
             <div key={index} style={{ backgroundColor: 'white', height: '450px', color: 'black', borderRadius: '10px' }}>
               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '10px', padding: '16px' }}>

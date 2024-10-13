@@ -1,0 +1,89 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,200,300);
+
+/* html {
+  font: 15px;
+  background-size: cover;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}*/
+
+/* body {
+  background-color: #E0D7C7 !important;
+}  */
+
+.page-customer-profile {
+    background-color: #E0D7C7 !important;
+  }
+
+.card-wrap {
+    height: 150px;
+  /* width: 400px; */
+  margin: 50px auto;
+  background: #211C1D;
+  position: relative;
+  padding: 20px;
+  /* border-radius: 5px; */
+  border-top: calc(20px / 3) solid #56453E;
+  font-family: 'Raleway', sans-serif;
+}
+
+.profile_pic-wrap {
+  width: 110px;
+  height: 110px;
+  background: #e3e3e3;
+  top: 0;
+  left: 50%;
+  padding: 5px;
+  position: absolute;
+  margin-left: calc(-100px / 2);
+  top: calc(-60px / 2);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile_pic-wrap img {
+  border-radius: 50%;
+}
+
+.user-name {
+  text-align: center;
+  margin-top: calc(150px / 2);
+}
+
+.user-title {
+  text-align: center;
+}
+
+.find_me-wrap {
+  margin-top: 40px;
+}
+
+.find-me {
+  font: 0.7em;
+}
+
+.info-wrap {
+  text-align: center;
+}
+
+.icon-wrap a {
+  line-height: 70px;
+  width: 24%;
+  text-decoration: none;
+  padding: 0;
+  font-size: 2em;
+  cursor: pointer;
+  margin: 0;
+  color: darken(#e3e3e3, 20%);
+  transition: color 0.1s linear;
+}
+
+.icon-wrap a:hover {
+  color: darken(#e3e3e3, 40%);
+}

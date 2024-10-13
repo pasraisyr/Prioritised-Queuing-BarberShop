@@ -19,7 +19,12 @@ import EditHairStyle from "./FrontEnd/ads/edithairstyle";
 import EditPackageStyle from "./FrontEnd/ads/editpackagestyle";
 import DashboardStaff from "./StaffViews/scense/dashboard";
 import QueueDisplay from './FrontEnd/booking/QueueDisplay';
+
+import ForgotPassword from "./FrontEnd/login/ForgotPassword";
+import ResetPassword from "./FrontEnd/login/ResetPassword";
+import CustomerProfile from "./FrontEnd/CusProfile/CustomerProfile";
 import DashboardCustomer from "./CustomersViews/scense/dashboard";
+
 
 
   const HodViewsLayout = ({ children, showTopbar = true }) => {
@@ -50,8 +55,17 @@ function App() {
     <Route path="/" element={
       <HodViewsLayout> 
         <MainPage />
-      </HodViewsLayout>}/>
+      </HodViewsLayout>}
+      />
 
+      <Route path="/CustomerProfile" element={
+        <HodViewsLayout >
+        <CustomerProfile />
+        </HodViewsLayout>
+      }
+      />
+
+    
    
     <Route
         path="/signin" element={
@@ -166,6 +180,8 @@ function App() {
       <AdminPages />
       <StaffPages />
       </>
+
+    
   );
 }
 
