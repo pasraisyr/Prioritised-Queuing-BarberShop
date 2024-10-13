@@ -20,7 +20,7 @@ import EditPackageStyle from "./FrontEnd/ads/editpackagestyle";
 import DashboardStaff from "./StaffViews/scense/dashboard";
 import QueueDisplay from './FrontEnd/booking/QueueDisplay';
 import CustomerProfile from "./FrontEnd/CusProfile/CustomerProfile";
-import DashboardCustomer from "./CustomersViews/scense/dashboard";
+import DashboardCustomer from './CustomersViews/scense/dashboard';
 
 
 
