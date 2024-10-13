@@ -1,6 +1,7 @@
 package com.ccsd.Shop.users;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.servlet.http.HttpSession;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -50,12 +53,16 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    // Login endpoint
+    // Login endpoint with session management
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody UserLoginRequest loginRequest) {
+    public ResponseEntity<?> loginUser(@RequestBody UserLoginRequest loginRequest, HttpSession session) {
         User user = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
+        
         if (user != null) {
-            // If credentials are correct, return the user details or a success message
+            // Store user details in the session
+            session.setAttribute("username", loginRequest.getUsername());
+            session.setAttribute("role", user.getRole());
+            
             return ResponseEntity.ok(user);
         } else {
             // If credentials are wrong, return 401 Unauthorized
@@ -63,13 +70,36 @@ public class UserController {
         }
     }
 
-    // @PostMapping("/register")
-    // public ResponseEntity<?> registerUser(@RequestBody User user) {
-    //     try {
-    //         User registeredUser = userService.registerUser(user);
-    //         return ResponseEntity.ok(registeredUser);  // Return the registered user
-    //     } catch (RuntimeException e) {
-    //         return ResponseEntity.badRequest().body(e.getMessage());  // Return error if username is taken
-    //     }
+    
+    // Get profile based on session data
+    @GetMapping("/profile")
+    public ResponseEntity<Map<String, Object>> getProfile(HttpSession session) {
+        // Retrieve the email and role from the session
+        String username = (String) session.getAttribute("username");
+        // Check if the user is logged in by verifying the email
+        if (username != null) {
+            // Fetch the user details using the email
+            User user = userService.findByEmail(username);
+
+            if (user != null) {
+                // Prepare a map to include both user details and role
+                Map<String, Object> response = Map.of(
+                    "user", user,
+                    "role", session.getAttribute("role")
+                );
+                return ResponseEntity.ok(response);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "User not found"));
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Unauthorized access"));
+        }
+    }
+
+    // Logout endpoint to invalidate the session
+    // @PostMapping("/logout")
+    // public ResponseEntity<Void> logoutUser(HttpSession session) {
+    //     session.invalidate();  // Invalidate the session
+    //     return ResponseEntity.noContent().build();
     // }
 }

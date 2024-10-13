@@ -22,6 +22,11 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public User findByEmail(String username) {
+        return userRepository.findByUsername(username);
+    }
+    
+
     // Adding a new user
     public User register(User user) {
         // Check if the username already exists
@@ -74,5 +79,6 @@ public class UserService {
         return null;
     }
 
+    
     
 }

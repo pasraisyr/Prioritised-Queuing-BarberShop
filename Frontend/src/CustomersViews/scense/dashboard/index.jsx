@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { DisplayCard } from '../../../FrontEnd/booking/DisplayCard';
 
 
-export default function DashboardCustomer() {
+export default function  DashboardCustomer() {
   return (
     <Box m="20px">
   <Box component="center"> 
