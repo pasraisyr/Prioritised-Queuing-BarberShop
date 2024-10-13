@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Typography, Box } from '@mui/material';
 import AuthService from '../../Auth/AuthService';
@@ -16,7 +16,7 @@ const PaymentPage = () => {
       const success = await AuthService.bookings(
         bookingDetails.style,
         bookingDetails.packageType,
-        bookingDetails.totalPrice,
+        bookingDetails.totalPrice/2,
         formattedDate,
         bookingDetails.time,
         bookingDetails.status,
@@ -52,7 +52,7 @@ const PaymentPage = () => {
         Confirm Your Booking
       </Typography>
       <Typography variant="body1">
-        Total Price: ${bookingDetails.totalPrice}
+        Total Price: ${bookingDetails.totalPrice/2}
       </Typography>
       <Button variant="contained" color="primary" onClick={handlePayment} sx={{ mt: 3 }}>
         Confirm and Pay
