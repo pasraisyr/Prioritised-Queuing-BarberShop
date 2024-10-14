@@ -101,7 +101,7 @@ const PackageStylesAd = () => {
       variant="contained" 
       color="primary"
       sx={{ position: 'absolute', right: '10px', bottom: '10px' }}
-      onClick={() => window.location.href = '/dashboard-staff'}
+      onClick={() => window.location.href = '/dashboard-customer'}
       >
         Back
       </Button>

@@ -36,7 +36,7 @@ export default function SignInSide() {
       const role = await localStorage.getItem('role');
 
       if (success && role === "Admin") {
-        navigate("/dashboard-admin");
+        navigate("/report");
       } else if (success && role === "Staff") {
         navigate("/dashboard-staff");
       } else if (success && role === "Customer") {
