@@ -26,16 +26,16 @@ import SalesReport from "./FrontEnd/ads/SalesReport";
 
 
 
-  const HodViewsLayout = ({ children, showTopbar = true, showIconButton = true, showHomeBtn }) => {
+  const HodViewsLayout = ({ children, showTopbar = true, showIconButton = true, showHomeBtn, logoutBtn = true }) => {
     const [theme, colorMode] = useMode();
   
     return (
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-
+          
           <main className="content">
-            {showTopbar && <BasicTopbar showIconButton={showIconButton}  showHomeBtn={showHomeBtn}/>}
+            {showTopbar && <BasicTopbar showIconButton={showIconButton}  showHomeBtn={showHomeBtn} logoutBtn={logoutBtn}/>}
             {children}
           </main>
         </ThemeProvider>
@@ -52,7 +52,7 @@ function App() {
       
 
     <Route path="/" element={
-      <HodViewsLayout showIconButton={false}> 
+      <HodViewsLayout showIconButton={false} logoutBtn={false}> 
         <MainPage />
       </HodViewsLayout>}
       />
@@ -118,7 +118,7 @@ function App() {
 
       <Route
         path="/dashboard-staff" element={
-          <HodViewsLayout >
+          <HodViewsLayout showIconButton={false}>
           <DashboardStaff />
           </HodViewsLayout>
 }
@@ -126,7 +126,7 @@ function App() {
 
       <Route
         path="/queue-display" element={
-          <HodViewsLayout >
+          <HodViewsLayout showIconButton={false}>
           <QueueDisplay />
           </HodViewsLayout>
         }
@@ -144,7 +144,7 @@ function App() {
 
       <Route 
         path="/edit-hairstyle" element={
-          <HodViewsLayout> 
+          <HodViewsLayout showIconButton={false}> 
             <EditHairStyle/>
             </HodViewsLayout> 
             } 
@@ -167,9 +167,9 @@ function App() {
 
 <Route 
        path="/update-password" element={
-          <HodViewsLayout> 
-          <UpdatePassword/>
-          </HodViewsLayout> 
+        <HodViewsLayout showTopbar={false}>
+        <UpdatePassword />
+        </HodViewsLayout>
           }
        />
 
