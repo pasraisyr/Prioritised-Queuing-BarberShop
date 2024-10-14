@@ -25,7 +25,7 @@ import NewDashboardCus from "./FrontEnd/CustomerDashboard/index"
 
 
 
-  const HodViewsLayout = ({ children, showTopbar = true, showIconButton = true  }) => {
+  const HodViewsLayout = ({ children, showTopbar = true, showIconButton = true, showHomeBtn }) => {
     const [theme, colorMode] = useMode();
   
     return (
@@ -34,7 +34,7 @@ import NewDashboardCus from "./FrontEnd/CustomerDashboard/index"
           <CssBaseline />
 
           <main className="content">
-            {showTopbar && <BasicTopbar showIconButton={showIconButton}/>}
+            {showTopbar && <BasicTopbar showIconButton={showIconButton}  showHomeBtn={showHomeBtn}/>}
             {children}
           </main>
         </ThemeProvider>
@@ -57,7 +57,7 @@ function App() {
       />
 
       <Route path="/CustomerProfile" element={
-        <HodViewsLayout >
+        <HodViewsLayout showHomeBtn={true} >
         <CustomerProfile />
         </HodViewsLayout>
       }
@@ -92,8 +92,7 @@ function App() {
 
 <Route
         path="/dashboard-customer" element={
-          <HodViewsLayout >
-          {/* <DashboardCustomer /> */}
+          <HodViewsLayout>
           <NewDashboardCus />
           </HodViewsLayout>
 }

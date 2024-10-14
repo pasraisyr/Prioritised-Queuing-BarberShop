@@ -7,8 +7,10 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@mui/material/Link';
 
+import HomeIcon from '@mui/icons-material/Home';
 
-const BasicTopbar = ({ showIconButton }) => {
+
+const BasicTopbar = ({ showIconButton, showHomeBtn }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { toggleColorMode } = useContext(ColorModeContext);
@@ -16,11 +18,7 @@ const BasicTopbar = ({ showIconButton }) => {
   return (
 <Box display="flex" justifyContent="space-between" p={2}>
   <Box display="flex" ml="auto">
-    {/* <IconButton onClick={() => alert("Radia ucuk")}>
-      {
-        <PersonOutlineIcon />
-      }
-    </IconButton> */}
+
 {showIconButton && (
 <Link component={RouterLink} to="/CustomerProfile" variant="body2">
        <IconButton >
@@ -28,7 +26,22 @@ const BasicTopbar = ({ showIconButton }) => {
         <PersonOutlineIcon />
       }
     </IconButton>
+
 </Link>
+
+)}
+
+{showHomeBtn && (
+  <Link component={RouterLink} to="/dashboard-customer" variant="body2">
+
+<IconButton>
+      {
+        <HomeIcon />
+      }
+    </IconButton>
+
+    </Link>
+
 )}
 
     <IconButton onClick={toggleColorMode}>
