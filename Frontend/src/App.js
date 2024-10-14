@@ -22,6 +22,7 @@ import QueueDisplay from './FrontEnd/booking/QueueDisplay';
 import CustomerProfile from "./FrontEnd/CusProfile/CustomerProfile";
 import DashboardCustomer from "./CustomersViews/scense/dashboard";
 import NewDashboardCus from "./FrontEnd/CustomerDashboard/index"
+import SalesReport from "./FrontEnd/ads/SalesReport";
 
 
 
@@ -169,6 +170,14 @@ function App() {
        path="/update-password" element={
           <HodViewsLayout> 
           <UpdatePassword/>
+          </HodViewsLayout> 
+          }
+       />
+
+<Route 
+       path="/report" element={
+          <HodViewsLayout> 
+          <SalesReport/>
           </HodViewsLayout> 
           }
        />
