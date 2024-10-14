@@ -101,6 +101,7 @@ const EditPackageStyle = () => {
   return (
     <div className="edit-page">
       <h1 className="pageTitle">PACKAGES</h1>
+      <table className="packageStyleTable"></table>
       <table>
         <thead>
           <tr>
@@ -142,6 +143,7 @@ const EditPackageStyle = () => {
                 value={newPackage.description}
                 onChange={(e) => setNewPackage({ ...newPackage, description: e.target.value })}
                 placeholder="Description"
+                className="custom-input"
                 
               />
             </td>
@@ -156,7 +158,7 @@ const EditPackageStyle = () => {
         </tbody>
       </table>
       <div className="button-container">
-        <button className="back-button" onClick={() => window.location.href = '/dashboard-admin'}>Back to Dashboard</button>
+        <button className="back-button" onClick={() => window.location.href = '/dashboard-staff'}>Back to Dashboard</button>
       </div>
     </div>
   );

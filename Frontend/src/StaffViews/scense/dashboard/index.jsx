@@ -30,7 +30,7 @@ import { Link } from 'react-router-dom';
     <Grid container spacing={2} justifyContent="center">
       <Grid item>
         <Card sx={{ maxWidth: 400 }}>
-        <Link to="/edit-package" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <Link to="/edit-packagestyle" style={{ textDecoration: 'none', color: 'inherit' }}>
           <CardActionArea>
             <CardContent>
               <Typography gutterBottom variant="h3" component="div" >
