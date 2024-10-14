@@ -35,14 +35,14 @@ const ManagerViewsLayout = ({ children }) => {
 const CustomerPages = () =>  (
     <Routes>
 
-<Route
+  {/* <Route
         path="/dashboard-customer"
         element={
           // <ManagerViewsLayout>
-            <DashboardCustomer />
+            // <DashboardCustomer />
           // </ManagerViewsLayout>
         }
-      />
+      /> */}
       <Route
         path="/team-manager"
         element={

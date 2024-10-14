@@ -8,7 +8,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import Link from '@mui/material/Link';
 
 
-const BasicTopbar = () => {
+const BasicTopbar = ({ showIconButton }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { toggleColorMode } = useContext(ColorModeContext);
@@ -21,7 +21,7 @@ const BasicTopbar = () => {
         <PersonOutlineIcon />
       }
     </IconButton> */}
-
+{showIconButton && (
 <Link component={RouterLink} to="/CustomerProfile" variant="body2">
        <IconButton >
       {
@@ -29,6 +29,7 @@ const BasicTopbar = () => {
       }
     </IconButton>
 </Link>
+)}
 
     <IconButton onClick={toggleColorMode}>
       {theme.palette.mode === "dark" ? (
