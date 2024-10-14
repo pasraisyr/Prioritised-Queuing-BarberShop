@@ -117,7 +117,7 @@ function App() {
 
       <Route
         path="/dashboard-staff" element={
-          <HodViewsLayout >
+          <HodViewsLayout showIconButton={false}>
           <DashboardStaff />
           </HodViewsLayout>
 }
@@ -125,7 +125,7 @@ function App() {
 
       <Route
         path="/queue-display" element={
-          <HodViewsLayout >
+          <HodViewsLayout showIconButton={false}>
           <QueueDisplay />
           </HodViewsLayout>
         }
@@ -143,7 +143,7 @@ function App() {
 
       <Route 
         path="/edit-hairstyle" element={
-          <HodViewsLayout> 
+          <HodViewsLayout showIconButton={false}> 
             <EditHairStyle/>
             </HodViewsLayout> 
             } 
@@ -166,9 +166,9 @@ function App() {
 
 <Route 
        path="/update-password" element={
-          <HodViewsLayout> 
-          <UpdatePassword/>
-          </HodViewsLayout> 
+        <HodViewsLayout showTopbar={false}>
+        <UpdatePassword />
+        </HodViewsLayout>
           }
        />
 
