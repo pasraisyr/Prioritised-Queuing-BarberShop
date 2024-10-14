@@ -26,7 +26,7 @@ const PaymentPage = () => {
       if (success) {
         console.log("Booking stored successfully!");
         alert("Booking confirmed and stored in the database!");
-        navigate('/'); // Navigate to home or another page after successful payment
+        navigate('/dashboard-customer'); // Navigate to home or another page after successful payment
       } else {
         console.log("Booking was not successful.");
       }
