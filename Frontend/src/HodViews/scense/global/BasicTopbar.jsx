@@ -8,6 +8,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import Link from '@mui/material/Link';
 
 import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 const BasicTopbar = ({ showIconButton, showHomeBtn }) => {
