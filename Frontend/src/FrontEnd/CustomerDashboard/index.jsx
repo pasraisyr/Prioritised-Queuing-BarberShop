@@ -17,6 +17,7 @@ const getDate = () => {
 };
 
 const currentDate = getDate(); // Store current date
+// const currentDate = "12-10-2024"; 
 
 const Index = () => {
   const [data, setData] = useState([]);

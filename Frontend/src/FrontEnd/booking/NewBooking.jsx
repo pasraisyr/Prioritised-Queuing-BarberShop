@@ -52,15 +52,15 @@ const Booking = () => {
     setTime(event.target.value);
   };
 
-
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const formattedDate = date.format('YYYY-MM-DD');
+    const deposit = totalPrice * 0.5;
     const bookingDetails = {
       style,
       packageType,
       totalPrice,
+      deposit,
       date: formattedDate,
       time,
       status,
@@ -181,6 +181,9 @@ const Booking = () => {
               </TextField>
               <Typography variant="h6" style={{ marginTop: '20px' }}>
                 Total Price: ${totalPrice}
+              </Typography>
+              <Typography variant="h6" style={{ marginTop: '10px' }}>
+                Deposit: ${totalPrice * 0.5}
               </Typography>
               <CardActions>
                 <Button

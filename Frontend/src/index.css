@@ -1,6 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@media (max-width: 768px) {
+  /* Styles for tablets */
+}
+@media (max-width: 576px) {
+  /* Styles for mobile */
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap');
 
