@@ -156,6 +156,9 @@ const EditHairStyle= () => {
           </tr>
         </tbody>
       </table>
+      <div className="button-container">
+        <button className="back-button" onClick={() => window.location.href = '/dashboard-staff'}>Back to Dashboard</button>
+      </div>
     </div>
   );
 };
