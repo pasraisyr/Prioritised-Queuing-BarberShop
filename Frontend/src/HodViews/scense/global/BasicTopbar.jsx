@@ -11,7 +11,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 
-const BasicTopbar = ({ showIconButton, showHomeBtn }) => {
+const BasicTopbar = ({ showIconButton, showHomeBtn, logoutBtn }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { toggleColorMode } = useContext(ColorModeContext);
@@ -52,6 +52,19 @@ const BasicTopbar = ({ showIconButton, showHomeBtn }) => {
         <DarkModeOutlinedIcon />
       )}
     </IconButton>
+
+    {logoutBtn && (
+  <Link component={RouterLink} to="/" variant="body2">
+
+<IconButton>
+      {
+        <LogoutIcon />
+      }
+    </IconButton>
+
+    </Link>
+
+)}
   </Box>
 </Box>
 
