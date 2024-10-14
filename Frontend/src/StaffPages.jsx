@@ -35,14 +35,14 @@ const ManagerViewsLayout = ({ children }) => {
 const StaffPages = () =>  (
     <Routes>
 
-<Route
+{/* <Route
         path="/dashboard-staff"
         element={
           //<ManagerViewsLayout>
             <DashboardStaff />
           //</ManagerViewsLayout>
         }
-      />
+      /> */}
       <Route
         path="/team-manager"
         element={

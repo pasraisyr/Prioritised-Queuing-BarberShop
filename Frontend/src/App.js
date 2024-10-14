@@ -21,10 +21,11 @@ import DashboardStaff from "./StaffViews/scense/dashboard";
 import QueueDisplay from './FrontEnd/booking/QueueDisplay';
 import CustomerProfile from "./FrontEnd/CusProfile/CustomerProfile";
 import DashboardCustomer from "./CustomersViews/scense/dashboard";
+import NewDashboardCus from "./FrontEnd/CustomerDashboard/index"
 
 
 
-  const HodViewsLayout = ({ children, showTopbar = true }) => {
+  const HodViewsLayout = ({ children, showTopbar = true, showIconButton = true  }) => {
     const [theme, colorMode] = useMode();
   
     return (
@@ -33,7 +34,7 @@ import DashboardCustomer from "./CustomersViews/scense/dashboard";
           <CssBaseline />
 
           <main className="content">
-            {showTopbar && <BasicTopbar />}
+            {showTopbar && <BasicTopbar showIconButton={showIconButton}/>}
             {children}
           </main>
         </ThemeProvider>
@@ -50,7 +51,7 @@ function App() {
       
 
     <Route path="/" element={
-      <HodViewsLayout> 
+      <HodViewsLayout showIconButton={false}> 
         <MainPage />
       </HodViewsLayout>}
       />
@@ -89,13 +90,15 @@ function App() {
         }
     />
 
-      <Route
+<Route
         path="/dashboard-customer" element={
           <HodViewsLayout >
-          <DashboardCustomer />
+          {/* <DashboardCustomer /> */}
+          <NewDashboardCus />
           </HodViewsLayout>
 }
 />
+
 
       <Route 
        path="/hair-style" element={
@@ -173,9 +176,9 @@ function App() {
 
 
     </Routes>
-      <CustomerPages/>
+      {/* <CustomerPages/> */}
       <AdminPages />
-      <StaffPages />
+      {/* <StaffPages /> */}
       </>
 
     

@@ -47,41 +47,59 @@ const CustomerProfile = () => {
 console.log(data);
 
   return (
-  //   <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>>
-  //   <Card style={{ marginTop: '10px' }}>
-  //   {data.user ? (
-  //     <div className="card-wrap">
-  //       <div className="profile_pic-wrap">
-  //         <img src="https://scontent-yyz1-1.cdninstagram.com/t51.2885-19/s320x320/12543142_446352545560748_362768810_a.jpg" alt="Profile" />
-  //       </div>
-  //       <div className="info-wrap">
-  //         <h1 className="user-name">{data.user.username}</h1>
-  //         {/* <p>{data.user.role || "User"}</p> */}
-  //         <p>{data.user.name}</p>
-  //       </div>
-  //     </div>
-  //   ) : (
-  //     <p>Loading user data...</p>
-  //   )}
-  // </Card>
-  // <Card>
-  //   <p style={mt=20}>Helo</p>
-  // </Card>
-  // </div>
 
   <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}> {/* Flexbox for column layout */}
   {/* First Card - Profile Information */}
   <Card style={{ marginTop: '10px' }}>
     {data.user ? (
-      <div className="card-wrap">
-        <div className="profile_pic-wrap">
+      // <div className="card-wrap">
+      <CardContent sx={{
+        height: '150px',
+        margin: '50px auto',
+        background: '#211C1D',
+        position: 'relative',
+        padding: '20px',
+        borderTop: 'calc(20px / 3) solid #56453E',
+        fontFamily: 'Raleway, sans-serif',
+      }}>
+        {/* <div className="profile_pic-wrap"> */}
+        <CardContent sx={{
+        width: '110px',
+        height: '110px',
+        background: '#e3e3e3',
+        top: '0',
+        left: '50%',
+        padding: '5px',
+        position: 'absolute',
+        marginLeft: 'calc(-100px / 2)',
+        top: 'calc(-60px / 2)',
+        borderRadius: '50%',
+        overflow: 'hidden',
+      }}>
+
           <img src="https://scontent-yyz1-1.cdninstagram.com/t51.2885-19/s320x320/12543142_446352545560748_362768810_a.jpg" alt="Profile" />
-        </div>
-        <div className="info-wrap">
-          <h1 className="user-name">{data.user.username}</h1>
-          <p>{data.user.name}</p>
-        </div>
-      </div>
+          </CardContent>
+        {/* </div> */}
+
+        {/* <div className="info-wrap"> */}
+        <CardContent sx={{ textAlign: 'center' }}>
+          {/* <h1 className="user-name">{data.user.username}</h1>
+          <p>{data.user.name}</p> */}
+          <Typography 
+            variant="h1" 
+            className="user-name"
+            sx={{ textAlign: 'center', marginTop: 'calc(150px / 2)' }}
+          >
+            {data.user.username}
+          </Typography>
+
+          <Typography variant="body1">
+            {data.user.name}
+          </Typography>
+          </CardContent>
+        {/* </div> */}
+        </CardContent>
+      // </div>
     ) : (
       <p>Loading user data...</p>
     )}
