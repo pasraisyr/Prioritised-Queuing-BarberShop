@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Button, Typography } from "@mui/material";
+import { Box, Grid,Typography } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -46,11 +46,13 @@ const Index = () => {
   };
 
   const sliderSettings = {
-    infinite: data.length > 1,
-    speed: 500,
-    slidesToShow: 1,
+    speed: 1000,
+    infinite: true,
+    slidesToShow: 3,
     slidesToScroll: 1,
     adaptiveHeight: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
 
   return (
@@ -66,8 +68,9 @@ const Index = () => {
               
               <div key={index} style={{ backgroundColor: 'white', height: '450px', color: 'black', borderRadius: '10px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '10px', padding: '16px' }}>
-                  <p style={{ fontSize: '1.25rem', fontWeight: '600' }}>{d.formattedDate}</p>
-                  <p style={{ fontSize: '1.25rem', fontWeight: '800' }}>{d.time}</p>
+                  <p style={{ fontSize: '1.25rem', fontWeight: '1000' }}>{d.formattedDate}</p>
+                  <p style={{ fontSize: '1.15rem', fontWeight: '600' }}>{d.username}</p>
+                  <p style={{ fontSize: '1.00rem', fontWeight: '1000', color:'lightblue'}}>{d.time}</p>
                 </div>
               </div>
             ))}
